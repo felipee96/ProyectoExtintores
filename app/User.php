@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Ingreso;
+use App\Models\Recarga;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,4 +38,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    #Llaves foraneas
+    public function IngresoUsuario()
+    {
+        //RELACION CON INGRESO
+        return $this->hasMany(Ingreso::class,'usuario_id','id');
+    }
+    public function UsuarioRecarga()
+    {
+        //RELACION CON RECARGA
+        return $this->hasMany(Recarga::class,'usuario_recarga_id','id');
+    }
 }

@@ -13,4 +13,8 @@ class Encargado extends Model
     {
          return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
     }
+    public function IngresoEncargado()
+    {
+        return $this->hasMany(Ingreso::class,'encargado_id','id');
+    }
 }
