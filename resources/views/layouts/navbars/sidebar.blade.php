@@ -1,9 +1,4 @@
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
-  <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
       {{ __('LOGO A & S') }}
@@ -47,16 +42,17 @@
             <p>{{ __('Empresa-Encargado') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
+      <li class="nav-item{{ $activePage == 'categoria' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('categoria') }}">
           <i class="material-icons">library_books</i>
             <p>{{ __('Categoria') }}</p>
         </a>
       </li>
+      </li>
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('icons') }}">
           <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
+          <p>{{ __('SubCategoria') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">

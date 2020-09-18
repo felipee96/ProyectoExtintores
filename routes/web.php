@@ -29,9 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.table_list');
 	})->name('table');
 
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
+	#Categorias
+	Route::get('categoria','Categoria\CategoriaController@index')->name('categoria');
+	Route::get('categoria/{id}', 'Categoria\CategoriaController@edit')->where('id', '[0-9]+');
+	Route::post('categoria','Categoria\CategoriaController@store');
+	Route::put('categoria/{id}','Categoria\CategoriaController@update')->where('id', '[0-9]+');
+	Route::delete('categoria/{id}','Categoria\CategoriaController@destroy')->where('id', '[0-9]+');
+
 
 	Route::get('icons', function () {
 		return view('pages.icons');
