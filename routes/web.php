@@ -36,10 +36,20 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('categoria/{id}','Categoria\CategoriaController@update')->where('id', '[0-9]+');
 	Route::delete('categoria/{id}','Categoria\CategoriaController@destroy')->where('id', '[0-9]+');
 
+	#SubCategoria
+	Route::get('subCategoria', 'SubCategoria\SubCategoriaController@index')->name('subCategoria');
+	Route::get('subCategoria/{id}', 'SubCategoria\SubCategoriaController@edit')->where('id', '[0-9]+');
+	Route::post('subCategoria', 'SubCategoria\SubCategoriaController@store');
+	Route::put('subCategoria/{id}', 'SubCategoria\SubCategoriaController@update')->where('id', '[0-9]+');
+	Route::delete('subCategoria/{id}', 'SubCategoria\SubCategoriaController@destroy')->where('id', '[0-9]+');
 
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
+	#Unidad de medidad
+	Route::get('unidad', 'Unidad\UnidadController@index')->name('unidad');
+	Route::get('unidad/{id}', 'Unidad\UnidadController@edit')->where('id', '[0-9]+');
+	Route::post('unidad', 'Unidad\UnidadController@store');
+	Route::put('unidad/{id}', 'Unidad\UnidadController@update')->where('id', '[0-9]+');
+	Route::delete('unidad/{id}', 'Unidad\UnidadController@destroy')->where('id', '[0-9]+');
+
 
 	Route::get('map', function () {
 		return view('pages.map');

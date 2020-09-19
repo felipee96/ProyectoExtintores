@@ -13,7 +13,7 @@ class UnidadMedida extends Model
     public function SubCategoria()
     {
         //Relacion con SUBCATEGORIA
-         return $this->hasMany(SubCategoria::class, 'sub_categoria_id', 'id');
+         return $this->belongsTo(SubCategoria::class, 'sub_categoria_id', 'id');
     }
     public function ListadoUnidadMedida()
     {

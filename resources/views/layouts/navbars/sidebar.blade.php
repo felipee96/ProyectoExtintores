@@ -42,18 +42,27 @@
             <p>{{ __('Empresa-Encargado') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'categoria' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('categoria') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Categoria') }}</p>
-        </a>
-      </li>
-      </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
+      <li class="nav-item dropdown {{ $activePage == 'categoria' ? ' active' : '' }}">
+    <a class="nav-link " data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="material-icons">library_books</i>
+      <p>{{__('Categoria')}}</p></a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{{ route('categoria') }}">
+        <i class="material-icons">category</i>
+          <p>{{ __('Categoria') }}</p>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('subCategoria') }}">
+        <i class="material-icons">bubble_chart</i>
           <p>{{ __('SubCategoria') }}</p>
-        </a>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('unidad') }}">
+        <i class="material-icons">drag_indicator</i>
+          <p>{{ __('Unidad') }}</p>
+      </a>
+    </div>
+  </li>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('map') }}">
@@ -73,12 +82,8 @@
           <p>{{ __('RTL Support') }}</p>
         </a>
       </li>
-      <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }} bg-danger">
-        <a class="nav-link text-white" href="{{ route('upgrade') }}">
-          <i class="material-icons">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li>
+      
+      
     </ul>
   </div>
 </div>
