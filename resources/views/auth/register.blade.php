@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Material Dashboard')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Logo')])
 
 @section('content')
 <div class="container" style="height: auto;">
@@ -23,21 +23,57 @@
             </div>
           </div>
           <div class="card-body ">
-            <p class="card-description text-center">{{ __('Or Be Classical') }}</p>
-            <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+            <p class="card-description text-center">{{ __('Registrar nuevo usuario') }}</p>
+            <div class="bmd-form-group{{ $errors->has('nombre') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                       <i class="material-icons">face</i>
                   </span>
                 </div>
-                <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required>
+                <input type="text" name="nombre" class="form-control" placeholder="{{ __('Nombre...') }}" value="{{ old('nombre') }}" required>
               </div>
-              @if ($errors->has('name'))
-                <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
-                  <strong>{{ $errors->first('name') }}</strong>
+              @if ($errors->has('nombre'))
+                <div id="nombre-error" class="error text-danger pl-3" for="nombre" style="display: block;">
+                  <strong>{{ $errors->first('nombre') }}</strong>
                 </div>
               @endif
+            </div>
+            <div class="bmd-form-group{{ $errors->has('apellido') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input type="text" name="apellido" class="form-control" placeholder="{{ __('Apellido...') }}" value="{{ old('apellido') }}" required>
+              </div>
+              @if ($errors->has('apellido'))
+                <div id="apellido-error" class="error text-danger pl-3" for="apellido" style="display: block;">
+                  <strong>{{ $errors->first('apellido') }}</strong>
+                </div>
+              @endif
+            </div>
+            <div class="bmd-form-group{{ $errors->has('cargo') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">how_to_reg</i>
+                  </span>
+                </div>
+                <select id="cargo" type="text" class="form-control{{ $errors->has('cargo') ? ' is-invalid' : '' }}"  name="cargo" required>
+                  <option value="">Seleccione cargo</option>
+                  <option value="Recepcionista" >Recepcionista</option>                                      
+                  <option value="Tecnico">Técnico</option>
+              </select>
+              @if('cargo')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('cargo') }}</strong>
+                  </span>
+              @endif
+
+              </div>
+              
             </div>
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
               <div class="input-group">
