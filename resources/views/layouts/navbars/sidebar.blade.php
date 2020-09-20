@@ -1,9 +1,4 @@
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
-  <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
       {{ __('LOGO A & S') }}
@@ -58,17 +53,27 @@
           </a>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Categoria') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
+      <li class="nav-item dropdown {{ $activePage == 'categoria' ? ' active' : '' }}">
+    <a class="nav-link " data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="material-icons">library_books</i>
+      <p>{{__('Categoria')}}</p></a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{{ route('categoria') }}">
+        <i class="material-icons">category</i>
+          <p>{{ __('Categoria') }}</p>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('subCategoria') }}">
+        <i class="material-icons">bubble_chart</i>
+          <p>{{ __('SubCategoria') }}</p>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('unidad') }}">
+        <i class="material-icons">drag_indicator</i>
+          <p>{{ __('Unidad') }}</p>
+      </a>
+    </div>
+  </li>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('map') }}">
