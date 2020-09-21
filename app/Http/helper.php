@@ -12,3 +12,8 @@ function Unidad()
 {
     return App\Models\UnidadMedida::select('id', 'unidad_medida', 'cantidad_medida', 'sub_categoria_id')->paginate(5);
 }
+function Empresa()
+{
+    return App\Models\Empresa::all();
+}
+

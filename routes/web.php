@@ -50,6 +50,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('unidad/{id}', 'Unidad\UnidadController@update')->where('id', '[0-9]+');
 	Route::delete('unidad/{id}', 'Unidad\UnidadController@destroy')->where('id', '[0-9]+');
 
+	#Empresa
+	Route::get('empresa', 'Empresa\EmpresaController@index')->name('empresa');
+	Route::post('empresa', 'Empresa\EmpresaController@store');
+	Route::put('empresa/{id}', 'Empresa\EmpresaController@update')->where('id', '[0-9]+');
+	Route::delete('empresa/{id}', 'Empresa\EmpresaController@destroy')->where('id', '[0-9]+');
+
+	#Encargado
+	Route::get('encargado', 'Encargado\EncargadoController@index')->name('encargado');
+	Route::post('encargado', 'Encargado\EncargadoController@store');
+	Route::put('encargado/{id}', 'Encargado\EncargadoController@update')->where('id', '[0-9]+');
+	Route::delete('encargado/{id}', 'Encargado\EncargadoController@destroy')->where('id', '[0-9]+');
+
 
 	Route::get('map', function () {
 		return view('pages.map');
