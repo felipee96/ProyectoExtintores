@@ -161,27 +161,6 @@
         </form> 
       </div>
     </div>
-    <div class="col-lg-6 col-md-12">
-      <div class="card">
-        <div class="card-header card-header-success">
-          <h4 class="card-title">Employees Stats</h4>
-          <p class="card-category">New employees on 15th September, 2016</p>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label for="exampleFormControlSelect2">Example multiple select</label>
-            <select multiple class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 @endsection

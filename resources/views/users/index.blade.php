@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('Perfil del usuario')])
+@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('Usuarios registrados')])
 
 @section('content')
 <div class="content">
@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Users</h4>
+            <h4 class="card-title ">Usuarios registrados</h4>
             <p class="card-category"> Here you can manage users</p>
           </div>
           <div class="card-body">

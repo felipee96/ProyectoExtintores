@@ -129,26 +129,23 @@
             <div class="card-header card-header-tabs card-header-primary">
               <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
-                  <span class="nav-tabs-title">Tasks:</span>
+                  <ul>
+                    <h3>Empresas registradas</h3>
+                  </ul>
+                  <span class="nav-tabs-title">Buscar empresas:</span>
                   <ul class="nav nav-tabs" data-tabs="tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#profile" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> Bugs
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#messages" data-toggle="tab">
-                        <i class="material-icons">code</i> Website
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#settings" data-toggle="tab">
-                        <i class="material-icons">cloud</i> Server
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
+                      <form class="">
+                        <div class="input-group no-border">
+                        <input type="text" value="" class="form-control" name="search" placeholder="Search..." type="search">
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                          <i class="material-icons">search</i>
+                          <div class="ripple-container"></div>
+                        </button>
+                        </div>
+                      </form>
+                    </li> 
                   </ul>
                 </div>
               </div>
@@ -373,7 +370,15 @@
           <div class="card">
             <div class="card-header card-header-warning">
               <h4 class="card-title">Employees Stats</h4>
-              <p class="card-category">New employees on 15th September, 2016</p>
+              <form class="">
+                <div class="input-group no-border">
+                <input type="text" value="" class="form-control" name="search" placeholder="Search..." type="search" style="color: white">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+                </div>
+              </form>
             </div>
             <div class="card-body table-responsive">
               <table class="table table-hover">

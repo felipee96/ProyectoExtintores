@@ -69,7 +69,7 @@
                     @if($errors->any())
                       <ul>
                         @foreach($errors->all() as $error)
-                          S<div class="alert alert-danger" role="alert">
+                          <div class="alert alert-danger" role="alert">
                             <li>{{ $error }}</li>
                           </div>
                           @endforeach

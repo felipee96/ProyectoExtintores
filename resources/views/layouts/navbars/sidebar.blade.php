@@ -42,12 +42,12 @@
           </p>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="">
+          <a class="dropdown-item" href="{{ route('empresa') }}">
             <i class="material-icons">business</i>
               <p>{{ __('Empresa') }}</p>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="">
+          <a class="dropdown-item" href="{{ route('encargado') }}">
             <i class="material-icons">supervisor_account</i>
               <p>{{ __('Encargados') }}</p>
           </a>
