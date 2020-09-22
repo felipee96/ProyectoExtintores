@@ -12,6 +12,6 @@ class Categoria extends Model
     #Relacion con las demas tablas
     public function subCategoria()
     {
-        return $this->belongsTo(SubCategoria::class,'categoria_id','id');
+        return $this->hasMany(SubCategoria::class,'categoria_id','id');
     }
 }

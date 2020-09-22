@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategoria extends Model
 {
     protected $table ='subcategorias';
-    protected $fillable = ['nombre_subCategoria','categoria_id','abreviacion'];
+    protected $fillable = ['id','nombre_subCategoria','categoria_id','abreviacion'];
 
     #Relacion con las demas tablas
     public function Categoria()

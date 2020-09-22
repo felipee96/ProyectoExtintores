@@ -13,7 +13,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        return view('pages.categoria');
+        return view('pages.categoria.categoria');
     }
     public function store(CategoriaCreateRequest $request)
     {
@@ -24,12 +24,7 @@ class CategoriaController extends Controller
             return back()->with('errors', 'No se pudo completar el registro');
         }
     }
-    public function edit($id)
-    {
-        $data = Categoria::findOrFail($id);
-        return view('pages.categoria.editarCategoria')->with('data', $data);
-    }
-    public function update(Request $request, $id)
+    public function update(CategoriaCreateRequest $request, $id)
     {
         try {
             $categoria = Categoria::find($id);
@@ -44,11 +39,13 @@ class CategoriaController extends Controller
     {
         #Eliminar un cliente segun su ID
         try {
+            $error='Error no se puede eliminar este registro';
             $delectCategoria = Categoria::findOrFail($id);
             $delectCategoria->delete();
             return back();
-        } catch (Exception $a) {
-            return 'Error';
+        } catch (Exception $error) {
+            return back()->with('error',$error);
         }
+        
     }
 }

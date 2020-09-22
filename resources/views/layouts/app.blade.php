@@ -17,6 +17,9 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.material.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -75,5 +78,25 @@
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/settings.js"></script>
         @stack('js')
+            
+            <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+        <script>
+            $(document).ready(function() {
+            $('#example').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            sheetName: 'Exported data'
+            } ],
+            columnDefs: [
+            {
+            targets: ['_all'],
+            className: 'mdc-data-table__cell'
+            }
+            ]
+            } );
+            } );
+        </script>
     </body>
 </html>

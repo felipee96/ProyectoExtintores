@@ -19,18 +19,18 @@ class UnidadController extends Controller
      */
     public function index()
     {
-        return view('pages.unidad');
+        return view('pages.unidad.unidad');
     }
     public function store(UnidadCreateRequest $request)
-    { 
+    {  
         try {
             $error = 'No se puedo realizar el registro';
             $unidad = new UnidadMedida();
             $unidad->unidad_medida = $request->input('unidad_medida');
             $unidad->cantidad_medida = $request->input('cantidad_medida');
-            $unidad->sub_categoria_id = $request->input('unidad');
+            $unidad->sub_categoria_id = $request->input('sub_categoria_id');
             $unidad->save();
-            return back();
+            return back()->with('exito','Se ha realizado el registro con exito');
         } catch (\Throwable $error) {
             return back()->with($error);
         }
@@ -41,23 +41,16 @@ class UnidadController extends Controller
         $data = UnidadMedida::findOrFail($id);
         return view('pages.categoria.editarUnidadMedida', compact('data', 'subCategoria'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(UnidadCreateRequest $request, $id)
     {
+        
         try {
             $unidad = UnidadMedida::find($id);
             $unidad->unidad_medida = $request->input('unidad_medida');
             $unidad->cantidad_medida = $request->input('cantidad_medida');
-            $unidad->sub_categoria_id = $request->input('unidad');
+            $unidad->sub_categoria_id = $request->input('sub_categoria_id');
             $unidad->update();
-            return redirect('unidad');
+            return back()->with('editar','Se ha actualizado el registro con exito');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se puedo completar este evento');
         }
@@ -75,7 +68,7 @@ class UnidadController extends Controller
         try {
             $delectUnidad = UnidadMedida::findOrFail($id);
             $delectUnidad->delete();
-            return back();
+            return back()->with('error','Se elimino con exito');
         } catch (Exception $a) {
             return 'Error';
         }

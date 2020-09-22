@@ -33,8 +33,10 @@ class SubCategoriaCreateRequest extends FormRequest
     {
         return [
             'nombre_subCategoria.required' => 'Ingresa nombre de la subCategoria',
+            'nombre_subCategoria.min' => 'El nombre de la subcategoria  debe contener más de 5 caracteres',
             'abreviacion.required' => 'Debe asignar una abreviacion para esta subCategoria',
             'categoria_id.required' => 'Por favor seleccionar la categoria a la que pertenece',
+            'categoria_id.min' => 'El campo categoria debe asignar a la categoria que pertenece',
         ];
     }
 }

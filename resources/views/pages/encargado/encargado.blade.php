@@ -97,7 +97,7 @@
 
                         </div>
                         <div class="card-body table-responsive">
-                            <table class="table table-hover">
+                            <table id="example" class="table table-hover">
                                 <thead class="text-warning">
                                     <tr>
                                         <th class="text-center">{{ __('#') }}</th>

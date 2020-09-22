@@ -31,6 +31,7 @@ class CategoriaCreateRequest extends FormRequest
     {
         return [
             'nombre_categoria.required'=>'Ingresa nombre de la categoria',
+            'nombre_categoria.min' => 'El nombre de la empresa  debe contener más de 5 caracteres',
         ];
     }
 }
