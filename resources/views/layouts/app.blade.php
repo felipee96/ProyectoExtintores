@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.material.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -82,21 +84,33 @@
             <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
         <script>
             $(document).ready(function() {
-            $('#example').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [ {
-            extend: 'excelHtml5',
-            autoFilter: true,
-            sheetName: 'Exported data'
-            } ],
-            columnDefs: [
-            {
-            targets: ['_all'],
-            className: 'mdc-data-table__cell'
-            }
-            ]
-            } );
-            } );
+                    $('#example').DataTable( {
+                    "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    },
+                    dom: 'Bfrtip',
+
+                    buttons: [ {
+                    extend:    'excelHtml5',
+				    text:      '<i class="fas fa-file-excel" style="font-size:15px;"></i> ',
+				    titleAttr: 'Exportar a Excel',
+				    className: 'btn btn-success'
+                    
+                    },
+                    {
+                    extend:    'print',
+				    text:      '<i class="fa fa-print"></i> ',
+				    titleAttr: 'Imprimir',
+				    className: 'btn btn-info'
+                    } ],
+                    columnDefs: [
+                    {
+                    targets: ['_all'],
+                    className: 'mdc-data-table__cell'
+                    }
+                    ]
+                    } );
+                    } );
         </script>
     </body>
 </html>

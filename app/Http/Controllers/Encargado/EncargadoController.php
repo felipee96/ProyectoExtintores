@@ -9,26 +9,21 @@ use Illuminate\Http\Request;
 
 class EncargadoController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        //trim sire para quitar espacios en blanco
-        if ($request) {
-
-            $filtro = trim($request->get('search'));
-            //filtrar por nombre
-            $data = Encargado::where('nombre_encargado', 'LIKE', '%' . $filtro . '%')
-                ->orderBy('id', 'asc')
-                ->paginate(5);
-            return view('pages.encargado.encargado', ['data' => $data, 'search' => $filtro]);
-            
-        }
-        //$data = Empresa::all();
-        //return view('pages.empresa.empresa',['data' => $data]);
+        return view('pages.encargado.encargado');
     }
     public function store(EncargadoCreateRequest $request)
     {
         try {
-            $data = Encargado::create($request->all());
+            $encargado = new Encargado();
+            $encargado->empresa_id = $request->input('empresa_id');
+            $encargado->nombre_encargado = $request->input('nombre_encargado');
+            $encargado->numero_celular = $request->input('numero_celular');
+            $encargado->email = $request->input('email');
+            $encargado->direccion = $request->input('direccion');
+            $encargado->numero_serial = $request->input('numero_serial');
+            $encargado->save();
             return back()->with('exito', 'Se guardo el registro correctamente');
         } catch (\Throwable $th) {
         
@@ -36,7 +31,7 @@ class EncargadoController extends Controller
         }
     }
     
-    public function update(Request $request, $id)
+    public function update(EncargadoCreateRequest $request, $id)
     {
         try {
             $encargado = Encargado::find($id);
@@ -47,7 +42,7 @@ class EncargadoController extends Controller
             $encargado->direccion = $request->input('direccion');
             $encargado->numero_serial = $request->input('numero_serial');
             $encargado->update();
-            return back()->with('exito', 'Se actualizo el registro correctamente');
+            return back()->with('editar', 'Se actualizo el registro correctamente');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se puedo actualizar este registro');
         }
@@ -58,7 +53,7 @@ class EncargadoController extends Controller
         try {
             $delectEncargado = Encargado::findOrFail($id);
             $delectEncargado->delete();
-            return back()->with('exito', 'Se elimino el registro correctamente');
+            return back()->with('error', 'Se elimino el registro correctamente');
         } catch (Exception $a) {
             return back()->with('errors', 'No se puedo eliminar este registro');
         }

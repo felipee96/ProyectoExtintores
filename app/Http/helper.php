@@ -14,6 +14,9 @@ function Unidad()
 }
 function Empresa()
 {
-    return App\Models\Empresa::all();
+    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion')->get();
 }
-
+function Encargado()
+{
+    return App\Models\Encargado::select('id', 'empresa_id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
+}

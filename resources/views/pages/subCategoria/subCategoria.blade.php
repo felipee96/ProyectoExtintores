@@ -9,11 +9,17 @@
           @if(session('editar'))
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('editar') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           @endif
           @if(session('exito'))
           <div class="alert alert-success" role="alert">
             {{ session('exito') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           @endif
           @if(session('error'))
