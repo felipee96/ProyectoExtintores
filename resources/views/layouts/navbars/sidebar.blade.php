@@ -89,12 +89,12 @@
           </p>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ route('categoria') }}">
+          <a class="dropdown-item" href="{{ route('actividad') }}">
             <i class="material-icons">assignment</i>
             <p>{{ __('Actividades') }}</p>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('subCategoria') }}">
+          <a class="dropdown-item" href="{{ route('cambioParte') }}">
             <i class="material-icons">build</i>
             <p>{{ __('Cambio de partes') }}</p>
           </a>

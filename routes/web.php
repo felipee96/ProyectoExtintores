@@ -60,6 +60,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('encargado/{id}', 'Encargado\EncargadoController@update')->where('id', '[0-9]+');
 	Route::delete('encargado/{id}', 'Encargado\EncargadoController@destroy')->where('id', '[0-9]+');
 
+	#Actividades
+	Route::get('actividad', 'Actividad\ActividadController@index')->name('actividad');
+	Route::post('actividad', 'Actividad\ActividadController@store');
+	Route::put('actividad/{id}', 'Actividad\ActividadController@update')->where('id', '[0-9]+');
+	Route::delete('actividad/{id}', 'Actividad\ActividadController@destroy')->where('id', '[0-9]+');
+
+	#CambioPartes
+	Route::get('cambioParte', 'CambioPartes\CambioPartesController@index')->name('cambioParte');
+	Route::post('cambioParte', 'CambioPartes\CambioPartesController@store');
+	Route::put('cambioParte/{id}', 'CambioPartes\CambioPartesController@update')->where('id', '[0-9]+');
+	Route::delete('cambioParte/{id}', 'CambioPartes\CambioPartesController@destroy')->where('id', '[0-9]+');
+
 
 	Route::get('map', function () {
 		return view('pages.map');

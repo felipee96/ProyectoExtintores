@@ -20,3 +20,11 @@ function Encargado()
 {
     return App\Models\Encargado::select('id', 'empresa_id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
 }
+function Actividad()
+{
+    return App\Models\Actividad::select('id', 'nombre_actividad', 'abreviacion_actividad')->get();
+}
+function CambioParte()
+{
+    return App\Models\CambioParte::select('id', 'nombre_parte_cambio')->get();
+}
