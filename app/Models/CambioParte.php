@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CambioParte extends Model
 {
     protected $table = 'cambio_parte_extintor';
-    protected $fillable = ['nombre_parte_cambio'];
+    protected $fillable = ['nombre_parte_cambio', 'referencia'];
     #Llave foraneas
     public function CambioParteRecarga()
     {

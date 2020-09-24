@@ -20,3 +20,20 @@ function Encargado()
 {
     return App\Models\Encargado::select('id', 'empresa_id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
 }
+function Prueba()
+{
+ return App\Models\Prueba::select('id','nombre_prueba','abreviacion_prueba')->get();
+}
+function Fuga()
+{
+    return App\Models\Fuga::select('id', 'nombre_fuga', 'abreviacion_fuga')->get();
+}
+function cambioParte()
+{
+    return App\Models\CambioParte::select('id', 'nombre_parte_cambio', 'referencia')->get();
+}
+function Actividad()
+{
+    return App\Models\Actividad::select('id', 'nombre_actividad', 'abreviacion_actividad')->get();
+}
+

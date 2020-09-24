@@ -37,12 +37,12 @@ class CategoriaController extends Controller
     }
     public function destroy($id)
     {
-        #Eliminar un cliente segun su ID
+        #Eliminar una categoria segun su ID
         try {
             $error='Error no se puede eliminar este registro';
             $delectCategoria = Categoria::findOrFail($id);
             $delectCategoria->delete();
-            return back();
+            return back()->with('error','Se ha eliminado con exito');
         } catch (Exception $error) {
             return back()->with('error',$error);
         }

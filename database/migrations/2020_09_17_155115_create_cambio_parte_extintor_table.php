@@ -16,6 +16,7 @@ class CreateCambioParteExtintorTable extends Migration
         Schema::create('cambio_parte_extintor', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_parte_cambio');
+            $table->string('referencia');
             $table->timestamps();
         });
     }
