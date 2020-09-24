@@ -89,7 +89,7 @@
           </p>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ route('categoria') }}">
+          <a class="dropdown-item" href="{{ route('actividad') }}">
             <i class="material-icons">assignment</i>
             <p>{{ __('Actividades') }}</p>
           </a>

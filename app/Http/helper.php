@@ -32,4 +32,8 @@ function cambioParte()
 {
     return App\Models\CambioParte::select('id', 'nombre_parte_cambio', 'referencia')->get();
 }
+function Actividad()
+{
+    return App\Models\Actividad::select('id', 'nombre_actividad', 'abreviacion_actividad')->get();
+}
 
