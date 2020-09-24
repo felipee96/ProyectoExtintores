@@ -66,6 +66,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('prueba/{id}', 'Prueba\PruebaController@update')->where('id', '[0-9]+');
 	Route::delete('prueba/{id}', 'Prueba\PruebaController@destroy')->where('id', '[0-9]+');
 
+	#Prueba
+	Route::get('fuga', 'Fuga\FugaController@index')->name('fuga');
+	Route::post('fuga', 'Fuga\FugaController@store');
+	Route::put('fuga/{id}', 'Fuga\FugaController@update')->where('id', '[0-9]+');
+	Route::delete('fuga/{id}', 'Fuga\FugaController@destroy')->where('id', '[0-9]+');
+
 	Route::get('map', function () {
 		return view('pages.map');
 	})->name('map');

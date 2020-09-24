@@ -17,7 +17,7 @@
       </li>
       <li class="nav-item {{ $activePage == 'profile' ? ' active' : '' }}">
         <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons">library_books</i>
+          <i class="material-icons">supervisor_account</i>
           <p>{{__('Usuarios')}}
             <b class="caret"></b>
           </p>
@@ -37,7 +37,7 @@
 
       <li class="nav-item {{ $activePage == 'empresa_encargado' ? ' active' : '' }}">
         <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons">library_books</i>
+          <i class="material-icons">business</i>
           <p>
             {{__('Empresa-Encargado')}}
             <b class="caret"></b>
@@ -57,7 +57,7 @@
       </li>
       <li class="nav-item dropdown {{ $activePage == 'categoria' ? ' active' : '' }}">
         <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons">library_books</i>
+          <i class="material-icons">category</i>
           <p>
             {{__('Categoria')}}
             <b class="caret"></b>
@@ -104,7 +104,7 @@
             <p>{{ __('Pruebas') }}</p>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('unidad') }}">
+          <a class="dropdown-item" href="{{ route('fuga') }}">
             <i class="material-icons">new_releases</i>
             <p>{{ __('Fugas') }}</p>
           </a>

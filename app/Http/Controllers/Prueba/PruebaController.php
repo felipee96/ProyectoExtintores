@@ -37,7 +37,7 @@ class PruebaController extends Controller
     }
     public function destroy($id)
     {
-        #Eliminar un cliente segun su ID
+        #Eliminar una prueba segun su ID
         try {
             $error='Error no se puede eliminar este registro';
             $delectPrueba = Prueba::findOrFail($id);

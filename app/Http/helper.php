@@ -24,4 +24,8 @@ function Prueba()
 {
  return App\Models\Prueba::select('id','nombre_prueba','abreviacion_prueba')->get();
 }
+function Fuga()
+{
+    return App\Models\Fuga::select('id', 'nombre_fuga', 'abreviacion_fuga')->get();
+}
 
