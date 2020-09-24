@@ -99,7 +99,7 @@
             <p>{{ __('Cambio de partes') }}</p>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('unidad') }}">
+          <a class="dropdown-item" href="{{ route('prueba') }}">
             <i class="material-icons">fact_check</i>
             <p>{{ __('Pruebas') }}</p>
           </a>

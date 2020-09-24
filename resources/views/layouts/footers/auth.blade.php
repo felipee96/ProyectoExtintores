@@ -23,8 +23,9 @@
       &copy;
       <script>
         document.write(new Date().getFullYear())
-      </script>, Todos los derechos reservados <i class="material-icons">favorite</i>
-             <a href="https://www.updivision.com" target="_blank">A & S</a>
+    
+      </script>, Todos los derechos reservados
+      <a style="color: antiquewhite" href="https://www.updivision.com" target="_blank">A & S</a>
     </div>
   </div>
 </footer>

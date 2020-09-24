@@ -20,3 +20,8 @@ function Encargado()
 {
     return App\Models\Encargado::select('id', 'empresa_id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
 }
+function Prueba()
+{
+ return App\Models\Prueba::select('id','nombre_prueba','abreviacion_prueba')->get();
+}
+
