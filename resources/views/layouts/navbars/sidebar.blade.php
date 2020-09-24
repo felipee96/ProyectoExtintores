@@ -94,7 +94,7 @@
             <p>{{ __('Actividades') }}</p>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('subCategoria') }}">
+          <a class="dropdown-item" href="{{ route('cambio') }}">
             <i class="material-icons">build</i>
             <p>{{ __('Cambio de partes') }}</p>
           </a>

@@ -28,4 +28,8 @@ function Fuga()
 {
     return App\Models\Fuga::select('id', 'nombre_fuga', 'abreviacion_fuga')->get();
 }
+function cambioParte()
+{
+    return App\Models\CambioParte::select('id', 'nombre_parte_cambio', 'referencia')->get();
+}
 

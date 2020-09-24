@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([UsersTableSeeder::class]);
         $this->call([PruebaSeeder::class]);
         $this->call([FugaTableSeeder::class]);
+        $this->call([CambioParteTableSeeder::class]);
+        
         
     }
 }
