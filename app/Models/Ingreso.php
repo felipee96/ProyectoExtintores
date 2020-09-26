@@ -9,7 +9,7 @@ class Ingreso extends Model
 /** Los nombres con _ son relacion con tablas que ya han tenido el mismo nomobre es para poder hacer diferecia entre ellos  */
 {
     protected $table = 'ingresos';
-    protected $fillable = ['fecha_recepcion', 'fecha_entrega', 'numero_referencia', 'encargado_id', 'usuario_id', 'numero_total_extintor'];
+    protected $fillable = ['fecha_recepcion', 'fecha_entrega',  'encargado_id', 'usuario_id', 'numero_total_extintor', 'estado'];
 
     #Relaciones con demas tablas
     public function Usuario()

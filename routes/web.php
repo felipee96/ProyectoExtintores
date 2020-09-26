@@ -84,6 +84,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('actividad/{id}', 'Actividad\ActividadesController@update')->where('id', '[0-9]+');
 	Route::delete('actividad/{id}', 'Actividad\ActividadesController@destroy')->where('id', '[0-9]+');
 
+	#listado Ingreso 
+	Route::get('ingreso/{id}', 'Ingreso\IngresoController@index')->name('ingreso');
+	Route::get('listIngreso', 'Ingreso\IngresoController@getEstadoIngreso')->name('listIngreso');
+	Route::put('ingreso/{id}', 'Ingreso\IngresoController@update')->where('id', '[0-9]+');
+
 	Route::get('map', function () {
 		return view('pages.map');
 	})->name('map');

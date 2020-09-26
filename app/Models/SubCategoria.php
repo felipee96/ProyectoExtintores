@@ -18,4 +18,8 @@ class SubCategoria extends Model
     {
          return $this->hasMany(UnidadMedida::class, 'sub_categoria_id', 'id');
     }
+    public function SubListadoIngreso()
+    {
+        return $this->belongsTo(ListadoIngreso::class, 'sub_categoria_id', 'id');
+    }
 }

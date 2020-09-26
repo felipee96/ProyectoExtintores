@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Encargado;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Encargado\EncargadoCreateRequest;
 use App\Models\Encargado;
+use Exception;
 use Illuminate\Http\Request;
 
 class EncargadoController extends Controller
