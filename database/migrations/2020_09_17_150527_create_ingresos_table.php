@@ -16,11 +16,11 @@ class CreateIngresosTable extends Migration
         Schema::create('ingresos', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_recepcion');
-            $table->date('fecha_entrega');
-            $table->integer('numero_referencia');
-            $table->unsignedInteger('encargado_id');
+            $table->date('fecha_entrega')->nullable();
+            $table->unsignedInteger('encargado_id')->nullable();
             $table->unsignedInteger('usuario_id');
             $table->integer('numero_total_extintor')->nullable();
+            $table->string('estado')->default('recibido');
             $table->timestamps();
 
             #LLaves foreneas 

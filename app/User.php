@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre','apellido','cargo', 'email', 'password',
+        'nombre', 'apellido', 'cargo', 'email', 'password',
     ];
 
     /**
@@ -42,11 +42,11 @@ class User extends Authenticatable
     public function IngresoUsuario()
     {
         //RELACION CON INGRESO
-        return $this->hasMany(Ingreso::class,'usuario_id','id');
+        return $this->hasMany(Ingreso::class, 'usuario_id', 'id');
     }
     public function UsuarioRecarga()
     {
         //RELACION CON RECARGA
-        return $this->hasMany(Recarga::class,'usuario_recarga_id','id');
+        return $this->hasMany(Recarga::class, 'usuario_recarga_id', 'id');
     }
 }

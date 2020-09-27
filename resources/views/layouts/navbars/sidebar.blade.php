@@ -15,7 +15,21 @@
           <p>{{ __('Panel administrativo') }}</p>
         </a>
       </li>
-
+      
+      <li class="nav-item {{ $activePage == 'profile' ? ' active' : '' }}">
+        <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">supervisor_account</i>
+          <p>{{__('Usuarios')}}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{{ route('profile.edit') }}">
+            <i class="material-icons">business</i>
+            <p>{{ __('Mi perfil') }}</p>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ route('user.index') }}">
       @can('read-task')
         <li class="nav-item {{ $activePage == 'profile' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

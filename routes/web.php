@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('usuario/{id}', 'UserController@update')->where('id', '[0-9]+');
 	Route::delete('usuario/{id}', 'UserController@destroy')->where('id', '[0-9]+');
 
+
 	Route::get('map', function () {
 		return view('pages.map');
 	})->name('map');
