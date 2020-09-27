@@ -30,7 +30,7 @@ class ActividadesController extends Controller
             $prueba->nombre_actividad = $request->input('nombre_actividad');
             $prueba->abreviacion_actividad = $request->input('abreviacion_actividad');
             $prueba->update();
-            return redirect('actividad')->with('exito', 'Se actualizo con exito el regristro');
+            return back()->with('editar', 'Se actualizo el registro correctamente');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se puedo completar este evento');
         }
@@ -44,7 +44,7 @@ class ActividadesController extends Controller
             $delectPrueba->delete();
             return back()->with('error', 'Se ha eliminado con exito');
         } catch (Exception $error) {
-            return back()->with('error', $error);
+            return back()->with('errors', 'No se puedo eliminar este registro');
         }
     }
 }

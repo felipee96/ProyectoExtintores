@@ -6,6 +6,39 @@
     <div class="row">
       <div class="col-md-12">
         <div class="container">
+          @if(session('editar'))
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('editar') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+          @if (session('exito'))
+          <div class="alert alert-success" role="alert">
+            {{ session('exito') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+          @if (session('error'))
+          <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+          @if ($errors->any())
+          <ul>
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+              <li>{{ $error }}</li>
+            </div>
+            @endforeach
+          </ul>
+          @endif
           <div class="card">
             <div class="card-header card-header-text card-header-warning">
               <div class="card-text">
@@ -55,8 +88,8 @@
                                   {{ method_field('PUT')}}
                                   <div class="form-group">
                                     <label for="nombre">{{ __('Nombre:') }}</label>
-                                    <input type="text" class="form-control" id="nombre" required
-                                      name="nombre" value="{{$item->nombre}}">
+                                    <input type="text" class="form-control" id="nombre" required name="nombre"
+                                      value="{{$item->nombre}}">
                                   </div>
                                   <div class="form-group">
                                     <label for="apellido">{{ __('Apellido:') }}</label>
