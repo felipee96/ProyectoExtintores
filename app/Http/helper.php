@@ -36,4 +36,8 @@ function Actividad()
 {
     return App\Models\Actividad::select('id', 'nombre_actividad', 'abreviacion_actividad')->get();
 }
+function Usuario()
+{
+    return App\User::select('id', 'nombre', 'apellido', 'cargo', 'email')->get();
+}
 

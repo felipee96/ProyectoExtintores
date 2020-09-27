@@ -5,54 +5,98 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Usuarios registrados</h4>
-            <p class="card-category"> Here you can manage users</p>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-12 text-right">
-                <a href="#" class="btn btn-sm btn-primary">Add user</a>
+        <div class="container">
+          <div class="card">
+            <div class="card-header card-header-text card-header-warning">
+              <div class="card-text">
+                <h4 class="card-title">{{ __('Usuarios registrados') }}</h4>
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Email
-                    </th>
-                    <th>
-                      Creation date
-                    </th>
-                    <th class="text-right">
-                      Actions
-                    </th>
+            <div class="card-body">
+              <table class="table table-striped" id="example">
+                <thead>
+                  <tr class="text-center">
+                    <th>{{ __('Nombre') }}</th>
+                    <th>{{ __('Apellido') }}</th>
+                    <th>{{ __('Cargo') }}</th>
+                    <th>{{ __('Email') }}</th>
+                    <th>{{ __('Contraseña') }}</th>
+                    <th>{{ __('Evento') }}</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach (Usuario() as $item)
                   <tr>
+                    <td>{{ $item->nombre }}</td>
+                    <td>{{ $item->apellido }}</td>
+                    <td>{{ $item->cargo }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>************</td>
                     <td>
-                      Admin Admin
+                      <div class="row">
+                        <div class="col-2 mt-1">
+                          <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round"
+                            data-toggle="modal" data-target="#editar{{ $item->id }}">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </div>
+                        <div class="modal" tabindex="-1" role="dialog" id="editar{{ $item->id }}">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Editar usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form method="POST" action="/usuario/{{$item->id}}">
+                                  {{ csrf_field() }}
+                                  {{ method_field('PUT')}}
+                                  <div class="form-group">
+                                    <label for="nombre">{{ __('Nombre:') }}</label>
+                                    <input type="text" class="form-control" id="nombre" required
+                                      name="nombre" value="{{$item->nombre}}">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="apellido">{{ __('Apellido:') }}</label>
+                                    <input type="text" class="form-control" id="apellido" required name="apellido"
+                                      value="{{$item->apellido}}">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="cargo">{{ __('Cargo:') }}</label>
+                                    <input type="text" class="form-control" id="cargo" required name="cargo"
+                                      value="{{$item->cargo}}">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="email">{{ __('Cargo:') }}</label>
+                                    <input type="text" class="form-control" id="email" required name="email"
+                                      value="{{$item->email}}">
+                                  </div>
+
+                                  <div class="modal-footer">
+                                    <button class="btn btn-primary">{{ __('Enviar') }}</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <form action="/usuario/{{$item->id }}" method="post">
+                            {{ csrf_field()}}
+                            {{ method_field('DELETE')}}
+                            <button type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round mt-2" style=""><i
+                                class="material-icons">close</i></button>
+                          </form>
+                        </div>
+                      </div>
                     </td>
-                    <td>
-                      admin@material.com
-                    </td>
-                    <td>
-                      2020-02-24
-                    </td>
-                    <td class="td-actions text-right">
-                      <a rel="tooltip" class="btn btn-success btn-link" href="#" data-original-title=""
-                        title="">
-                        <i class="material-icons">edit</i>
-                        <div class="ripple-container"></div>
-                      </a>
-                    </td>
+
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
