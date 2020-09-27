@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('read-task', function($user){
+            return $user->cargo === 'Recepcionista';
+        });
     }
 }
