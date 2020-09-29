@@ -20,9 +20,4 @@ class ListadoIngreso extends Model
         //RELACION CON INGRESO
        return $this->belongsTo(Ingreso::class,'ingreso_id','id');
     }
-    public function IngresoSubCategoria()
-    {
-        //RELACION CON SUBCATEGORIA
-        return $this->hasMany(SubCategoria::class, 'sub_categoria_id', 'id');
-    }
 }

@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('prueba/{id}', 'Prueba\PruebaController@update')->where('id', '[0-9]+');
 	Route::delete('prueba/{id}', 'Prueba\PruebaController@destroy')->where('id', '[0-9]+');
 
-	#Prueba 
+	#Fufa 
 	Route::get('fuga', 'Fuga\FugaController@index')->name('fuga');
 	Route::post('fuga', 'Fuga\FugaController@store');
 	Route::put('fuga/{id}', 'Fuga\FugaController@update')->where('id', '[0-9]+');
@@ -88,10 +88,27 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('usuario/{id}', 'UserController@update')->where('id', '[0-9]+');
 	Route::delete('usuario/{id}', 'UserController@destroy')->where('id', '[0-9]+');
 
-	#listado Ingreso 
+	#Ingreso 
 	Route::get('ingreso/{id}', 'Ingreso\IngresoController@index')->name('ingreso');
 	Route::get('listIngreso', 'Ingreso\IngresoController@getEstadoIngreso')->name('listIngreso');
 	Route::put('ingreso/{id}', 'Ingreso\IngresoController@update')->where('id', '[0-9]+');
+
+	#ListadoIngreso
+	Route::get('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
+	Route::post('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@store');
+	Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
+	Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
+
+	#Ruta para combo dinamico Subcategoria
+	Route::get('comboSubcategoria/{id}','ListadoIngreso\ListadoIngresoController@byCategoria');
+	#Ruta para combo dinamico Unidadmedida
+	Route::get('comboUnidadMedida/{id}','ListadoIngreso\ListadoIngresoController@bySubcategoria');
+
+	#Recargas
+	Route::get('recarga', 'Recarga\RecargaController@index')->name('recarga');
+	Route::post('recarga', 'Recarga\RecargaController@store');
+	Route::put('recarga/{id}', 'Recarga\RecargaController@update')->where('id', '[0-9]+');
+	Route::delete('recarga/{id}', 'Recarga\RecargaController@destroy')->where('id', '[0-9]+');
 
 
 	Route::get('map', function () {

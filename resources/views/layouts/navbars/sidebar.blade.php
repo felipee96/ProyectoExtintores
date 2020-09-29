@@ -15,8 +15,16 @@
           <p>{{ __('Panel administrativo') }}</p>
         </a>
       </li>
+      @can('tecnico')
+        <li class="nav-item{{ $activePage == 'recargas' ? ' active' : '' }}">
+          <a class="nav-link" href="{{ route('recarga') }}">
+            <i class="material-icons">dashboard</i>
+            <p>{{ __('Recargas') }}</p>
+          </a>
+        </li>
+      @endcan
  
-      @can('read-task')
+      @can('recepcionista')
         <li class="nav-item {{ $activePage == 'ingreso' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">pan_tool</i>
@@ -39,7 +47,7 @@
         </li>
       @endcan
 
-      @can('read-task')
+      @can('recepcionista')
         <li class="nav-item {{ $activePage == 'profile' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">supervisor_account</i>
@@ -61,7 +69,7 @@
         </li>
       @endcan
 
-      @can('read-task')
+      @can('recepcionista')
         <li class="nav-item {{ $activePage == 'empresa_encargado' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">business</i>
@@ -84,7 +92,7 @@
         </li>
       @endcan
 
-      @can('read-task')
+      @can('recepcionista')
         <li class="nav-item dropdown {{ $activePage == 'categoria' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">category</i>
@@ -112,7 +120,7 @@
         </li>
       @endcan
 
-      @can('read-task')
+      @can('recepcionista')
         <li class="nav-item dropdown {{ $activePage == 'adicionales' ? ' active' : '' }}">
           <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">construction</i>

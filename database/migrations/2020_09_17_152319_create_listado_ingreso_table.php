@@ -15,14 +15,12 @@ class CreateListadoIngresoTable extends Migration
     {
         Schema::create('listado_ingreso', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('sub_categoria_id');
             $table->unsignedInteger('ingreso_id');
             $table->unsignedInteger('unidad_medida_id');
             $table->integer('numero_extintor');
             $table->timestamps();
 
             #LLaves foreneas
-            $table->foreign('sub_categoria_id')->references('id')->on('subcategorias'); 
             $table->foreign('ingreso_id')->references('id')->on('ingresos');
             $table->foreign('unidad_medida_id')->references('id')->on('unidades_medida');
         });
