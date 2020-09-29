@@ -45,8 +45,9 @@ class IngresoController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         /** Creamos este metodo para hacer uso de el en varias situaciones */
-        try {
+        #try {
             $ingreso = Ingreso::where('id', $id)->first();
             if ($ingreso) {
                 $ingreso->fecha_entrega = $request->input('fecha_entrega');
@@ -55,11 +56,11 @@ class IngresoController extends Controller
                 $ingreso->estado = 'Proceso';
                 // Guardamos en base de datos
                 $ingreso->save();
-                return redirect('listIngreso')->with('exito', 'Se ha actualizado con exito el ingreso');
+                return redirect('listadoIngreso');
             }
-        } catch (\Throwable $th) {
+        #} catch (\Throwable $th) {
             return redirect('listIngreso')->with('error', 'No se actualizo  el ingreso');
-        }
+        #}
     }
     public function destroy($id)
     {

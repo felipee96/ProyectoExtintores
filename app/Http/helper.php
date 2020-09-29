@@ -40,4 +40,14 @@ function Usuario()
 {
     return App\User::select('id', 'nombre', 'apellido', 'cargo', 'email')->get();
 }
+function ListadoIngreso()
+{
+    $unidad = DB::table('listado_ingreso')
+        ->join('unidades_medida', 'listado_ingreso.unidad_medida_id', '=', 'unidades_medida.id')
+        ->join('subcategorias', 'unidades_medida.sub_categoria_id', '=', 'subcategorias.id')
+        ->join('categorias', 'subcategorias.categoria_id', '=', 'categorias.id')
+        ->select('listado_ingreso.id','listado_ingreso.ingreso_id','listado_ingreso.unidad_medida_id','listado_ingreso.numero_extintor','unidades_medida.unidad_medida','unidades_medida.cantidad_medida','subcategorias.nombre_subCategoria','categorias.nombre_categoria')
+        ->get();
+    return $unidad;
+}
 
