@@ -12,7 +12,7 @@ function SelectCategoriaChange() {
     }
     //AJAX
 
-    $.get('comboSubcategoria/'+categoria+'', function fnCategoria(data) {
+    $.get('comboSubcategoria/' + categoria + '', function fnCategoria(data) {
         var html_select = '<option value="">Seleccione</option>';
         for (var i=0; i<data.length; ++i)
             html_select += '<option value="'+data[i].id+'">'+data[i].nombre_subCategoria+'</option>'

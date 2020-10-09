@@ -14,4 +14,9 @@ class Actividad extends Model
         //RELACION CON ACTIVIDAD
         return $this->belongsTo(Actividad::class, 'activida_recarga_id', 'id');
     }
+    public function IngresoActividad()
+    {
+        //RELACION CON LA TABLA INGRESO
+        return $this->belongsTo(Ingreso::class, 'actividad_id','id');
+    }
 }

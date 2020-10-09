@@ -19,6 +19,7 @@ class CreateIngresosTable extends Migration
             $table->date('fecha_entrega')->nullable();
             $table->unsignedInteger('encargado_id')->nullable();
             $table->unsignedInteger('usuario_id');
+            $table->integer('numero_referencia')->nullable();
             $table->integer('numero_total_extintor')->nullable();
             $table->string('estado')->default('recibido');
             $table->timestamps();

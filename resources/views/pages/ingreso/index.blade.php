@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                       <form method="POST" action="/ingreso/{{$crearId->id}}" style="margin-top: 40px;"
+                       <form method="POST" action="/ingresoL/{{$crearId->id}}" style="margin-top: 40px;"
                         enctype="/multipart/form-data">
                         {{ csrf_field()}}
                         {{ method_field('PUT')}}

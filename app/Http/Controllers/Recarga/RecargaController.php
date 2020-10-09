@@ -4,14 +4,21 @@ namespace App\Http\Controllers\Recarga;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recarga\RecargaCreate;
+use App\Models\Ingreso;
 use App\Models\Recarga;
-use Illuminate\Http\Request;
 
 class RecargaController extends Controller
 {
     public function index()
     {
-        return view('pages.recarga.recarga');
+        $data = Ingreso::select('id', 'fecha_recepcion', 'fecha_entrega', 'encargado_id', 'usuario_id', 'numero_referencia', 'numero_total_extintor', 'estado')->where('estado', '=', 'proceso')->get();
+        return view('pages.recarga.verIngresoRecarga',compact('data'));
+       //return view('pages.recarga.recarga');
+    }
+    public function setRecargaListado($id)
+    {
+      $data = Ingreso::select('id', 'fecha_recepcion', 'fecha_entrega', 'numero_referencia', 'numero_total_extintor')->where('id',$id)->first();
+      return $data;
     }
     public function store(RecargaCreate $request)
     {

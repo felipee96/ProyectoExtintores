@@ -144,8 +144,7 @@
                                         <select class="form-control" name="sub_categoria_id" id="sub_categoria_id">
                                             <option value="">---SELECCIONAR---</option>
                                             @foreach (SubCategoria() as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nombre_subCategoria }}
-                                                    <h2>{{ $item->abreviacion }}</h2>
+                                                <option value="{{ $item->id }}"><h2>{{ $item->abreviacion }}</h2>
                                                 </option>
                                             @endforeach
                                         </select>

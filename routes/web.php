@@ -91,41 +91,28 @@ Route::group(['middleware' => 'auth'], function () {
 	#Ingreso 
 	Route::get('ingreso/{id}', 'Ingreso\IngresoController@index')->name('ingreso');
 	Route::get('listIngreso', 'Ingreso\IngresoController@getEstadoIngreso')->name('listIngreso');
-	Route::put('ingreso/{id}', 'Ingreso\IngresoController@update')->where('id', '[0-9]+');
+	Route::put('ingreso/{id}', 'Ingreso\IngresoController@actualizarI')->where('id', '[0-9]+');
+	Route::put('ingresoL/{id}', 'Ingreso\IngresoController@update')->where('id', '[0-9]+');
+	Route::get('ingresoL/{id}', 'Ingreso\IngresoController@listadoIngreso')->where('id', '[0-9]+');
+	Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
 
 	#ListadoIngreso
-	Route::get('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
+	Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
 	Route::post('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@store');
 	Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
 	Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
+	
 
 	#Ruta para combo dinamico Subcategoria
-	Route::get('comboSubcategoria/{id}','ListadoIngreso\ListadoIngresoController@byCategoria');
+	Route::get('ingresoL/comboSubcategoria/{id}','ListadoIngreso\ListadoIngresoController@byCategoria');
 	#Ruta para combo dinamico Unidadmedida
-	Route::get('comboUnidadMedida/{id}','ListadoIngreso\ListadoIngresoController@bySubcategoria');
-
+	Route::get('ingresoL/comboUnidadMedida/{id}','ListadoIngreso\ListadoIngresoController@bySubcategoria');
 	#Recargas
 	Route::get('recarga', 'Recarga\RecargaController@index')->name('recarga');
+	Route::get('recarga/{id}', 'Recarga\RecargaController@setRecargaListado');
 	Route::post('recarga', 'Recarga\RecargaController@store');
 	Route::put('recarga/{id}', 'Recarga\RecargaController@update')->where('id', '[0-9]+');
 	Route::delete('recarga/{id}', 'Recarga\RecargaController@destroy')->where('id', '[0-9]+');
-
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
 });
 
 Route::group(['middleware' => 'auth'], function () {

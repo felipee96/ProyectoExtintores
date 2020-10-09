@@ -24,7 +24,7 @@ class SubCategoriaCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_subCategoria' => 'required|min:5',
+            'nombre_subCategoria' => 'required|min:2',
             'abreviacion' => 'required',
             'categoria_id' => 'required|min:1',
         ];
@@ -33,7 +33,7 @@ class SubCategoriaCreateRequest extends FormRequest
     {
         return [
             'nombre_subCategoria.required' => 'Ingresa nombre de la subCategoria',
-            'nombre_subCategoria.min' => 'El nombre de la subcategoria  debe contener más de 5 caracteres',
+            'nombre_subCategoria.min' => 'El nombre de la subcategoria  debe contener más de 2 caracteres',
             'abreviacion.required' => 'Debe asignar una abreviacion para esta subCategoria',
             'categoria_id.required' => 'Por favor seleccionar la categoria a la que pertenece',
             'categoria_id.min' => 'El campo categoria debe asignar a la categoria que pertenece',

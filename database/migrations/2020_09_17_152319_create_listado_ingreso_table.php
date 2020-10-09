@@ -17,12 +17,14 @@ class CreateListadoIngresoTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('ingreso_id');
             $table->unsignedInteger('unidad_medida_id');
+            $table->unsignedInteger('actividad_id');
             $table->integer('numero_extintor');
             $table->timestamps();
 
             #LLaves foreneas
             $table->foreign('ingreso_id')->references('id')->on('ingresos');
             $table->foreign('unidad_medida_id')->references('id')->on('unidades_medida');
+            $table->foreign('actividad_id')->references('id')->on('actividades');
         });
     }
 

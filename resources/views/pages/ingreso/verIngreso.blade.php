@@ -25,6 +25,7 @@
                         <table class="table" id="example">
                             <thead>
                                 <tr class="text-left">
+                                    <th>{{ __('Referencia') }}</th>
                                     <th>{{ __('Fecha de ingreso') }}</th>
                                     <th>{{ __('Fecha de entrega') }}</th>
                                     <th>{{ __('Encargado') }}</th>
@@ -36,19 +37,23 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
-                                <tr class="text-center">
+                                <tr>
+                                    <td>{{ $item->numero_referencia }}</td>
                                     <td>{{ $item->fecha_recepcion }}</td>
                                     <td>{{ $item->fecha_entrega }}</td>
                                     <td>{{ $item->Encargado->nombre_encargado }}</td>
                                     <td>{{ $item->Usuario->nombre}}</td>
                                     <td>{{ $item->numero_total_extintor }}</td>
                                     <td>{{ $item->estado }}</td>
-                                    
                                     <td>
                                         <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round" data-toggle="modal"
                                             data-target="#editar{{ $item->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
+                                            <button type="submit" class="btn btn-warning btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#ver">
+                                            <i class="material-icons">speaker_notes</i>
+                                        </button>
+                                        <!-- Modal -->
                                         <div class="modal" tabindex="-1" role="dialog" id="editar{{ $item->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -89,7 +94,7 @@
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6" style="margin-top: 44px">
                                                                     <label for="Numero">{{__('Numero exintores')}}</label>
-                                                                    <input required type="number" class="form-control" name="numero_total_extintor" id="numero_total_extintor" value="{{$item->numero_total_extintor}}">
+                                                                    <input disabled required type="number" class="form-control" name="numero_total_extintor" id="numero_total_extintor" value="{{$item->numero_total_extintor}}">
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="encargado">{{__('Encargado')}}</label>
@@ -113,7 +118,27 @@
                         
                                                 </div>
                                             </div>
-                                        </div> 
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="ver" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="ver">Listado de Ingreso # {{$item->numero_referencia}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ...
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                         
                                 </tr>
