@@ -7,6 +7,7 @@ use App\Http\Requests\Encargado\EncargadoCreateRequest;
 use App\Models\Encargado;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EncargadoController extends Controller
 {
@@ -27,11 +28,11 @@ class EncargadoController extends Controller
             $encargado->save();
             return back()->with('exito', 'Se guardo el registro correctamente');
         } catch (\Throwable $th) {
-        
+
             return back()->with('errors', 'No se pudo crear el registro');
         }
     }
-    
+
     public function update(EncargadoCreateRequest $request, $id)
     {
         try {
@@ -50,13 +51,30 @@ class EncargadoController extends Controller
     }
     public function destroy($id)
     {
-        
+
         try {
             $delectEncargado = Encargado::findOrFail($id);
             $delectEncargado->delete();
             return back()->with('error', 'Se elimino el registro correctamente');
         } catch (Exception $a) {
             return back()->with('errors', 'No se puedo eliminar este registro');
+        }
+    }
+    public function getClient(Request $request)
+    {
+        if ($request->get('query')) {
+            $query = $request->get('query');
+            $data = DB::table('encargados')
+                ->where('nombre_encargado	', 'LIKE', "%{$query}%")
+                ->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            foreach ($data as $row) {
+                $output .= '
+       <li><a href="#">' . $row->nombre_encargado	 . '</a></li>
+       ';
+            }
+            $output .= '</ul>';
+            echo $output;
         }
     }
 }

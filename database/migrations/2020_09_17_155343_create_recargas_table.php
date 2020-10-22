@@ -18,6 +18,7 @@ class CreateRecargasTable extends Migration
             $table->integer('nro_tiquete_anterior');
             $table->integer('nro_tiquete_nuevo');
             $table->integer('nro_extintor');
+            $table->integer('capacidad');
             $table->string('agente')->nullable();
             $table->unsignedInteger('usuario_recarga_id');
             $table->unsignedInteger('ingreso_recarga_id');

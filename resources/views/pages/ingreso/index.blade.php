@@ -1,5 +1,4 @@
 @extends('layouts.app', ['activePage' => 'ingreso', 'titlePage' => __('Formulario de ingreso')])
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -22,41 +21,44 @@
                         </div>
                     </div>
                     <div class="card-body">
-                       <form method="POST" action="/ingresoL/{{$crearId->id}}" style="margin-top: 40px;"
-                        enctype="/multipart/form-data">
-                        {{ csrf_field()}}
-                        {{ method_field('PUT')}}
+                        <form method="POST" action="/ingresoL/{{$crearId->id}}" style="margin-top: 40px;"
+                            enctype="/multipart/form-data">
+                            {{ csrf_field()}}
+                            {{ method_field('PUT')}}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="Fecha Ingreso">{{__('Fecha de ingreso')}}</label>
-                                    <input disabled type="text" class="form-control" id="fecha_recepcion" name="fecha_recepcion" value="{{$crearId->fecha_recepcion}}">
+                                    <input disabled type="text" class="form-control" id="fecha_recepcion"
+                                        name="fecha_recepcion" value="{{$crearId->fecha_recepcion}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Fecha Entrega">{{__('Fecha de entrega')}}</label>
-                                    <input required type="date" class="form-control" id="fecha_entrega" name="fecha_entrega">
+                                    <input required type="date" class="form-control" id="fecha_entrega"
+                                        name="fecha_entrega">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="Numero Referencia">{{__('Numero de referencia')}}</label>
-                                    <input disabled required type="text" class="form-control" id="numero_referencia" name="numero_referencia" value="{{$crearId->id}}">
+                                    <input disabled required type="text" class="form-control" id="numero_referencia"
+                                        name="numero_referencia" value="{{$crearId->id}}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="Usuario">{{__('Usuario')}}</label>
-                                    <input disabled required type="text" class="form-control" id="usuario_id" name="usuario_id" value="{{Auth::user()->nombre}} {{Auth::user()->apellido}}">
+                                    <label for="Usuario">{{__('Colaborador A&S')}}</label>
+                                    <input disabled required type="text" class="form-control" id="usuario_id"
+                                        name="usuario_id" value="{{Auth::user()->nombre}} {{Auth::user()->apellido}}">
                                 </div>
                             </div>
-                        
+
                             <div class="form-row">
                                 <div class="form-group col-md-6" style="margin-top: 44px">
                                     <label for="Numero">{{__('Numero exintores')}}</label>
-                                    <input required type="number" class="form-control" id="numero_total_extintor" name="numero_total_extintor"
-                                        placeholder="Ej: ###">
+                                    <input required type="number" class="form-control" id="numero_total_extintor"
+                                        name="numero_total_extintor" placeholder="Ej: ###">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="encargado">{{__('Encargado')}}</label>
-                                    <select required id="encargado_id" name="encargado_id"
-                                        class="form-control">
+                                    <label for="encargado">{{__('Cliente')}}</label>
+                                    <select required id="encargado_id" name="encargado_id" class="form-control">
                                         <option value="">Seleccionar</option>
                                         @foreach(Encargado() as $item)
                                         <option value="{{ $item->id }}">
@@ -64,18 +66,23 @@
                                         </option>
                                         @endforeach
                                     </select>
+
+
                                 </div>
-                                
                             </div>
-                            <div style="text-align:center; margin-top: 30px;">
-                                <button type="submit" class="btn btn-success">Guardar</button>
-                                <a href="{{ url('/home') }}" class="btn btn-danger">Cancelar</a>
-                            </div>
-                        </form>
                     </div>
+
                 </div>
+                <div style="text-align:center; margin-top: 30px;">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="{{ url('/home') }}" class="btn btn-danger">Cancelar</a>
+                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+</div>
+</div>
+
 @endsection

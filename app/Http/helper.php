@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Ingreso;
+use Illuminate\Support\Facades\DB;
+
 function Categoria()
 {
     return App\Models\Categoria::select('id','nombre_categoria')->get();
@@ -14,7 +17,7 @@ function Unidad()
 }
 function Empresa()
 {
-    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion')->get();
+    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'created_at')->get();
 }
 function Encargado()
 {
@@ -42,12 +45,7 @@ function Usuario()
 }
 function ListadoIngreso()
 {
-    $unidad = DB::table('listado_ingreso')
-        ->join('unidades_medida', 'listado_ingreso.unidad_medida_id', '=', 'unidades_medida.id')
-        ->join('subcategorias', 'unidades_medida.sub_categoria_id', '=', 'subcategorias.id')
-        ->join('categorias', 'subcategorias.categoria_id', '=', 'categorias.id')
-        ->select('listado_ingreso.id','listado_ingreso.ingreso_id','listado_ingreso.unidad_medida_id','listado_ingreso.numero_extintor','unidades_medida.unidad_medida','unidades_medida.cantidad_medida','subcategorias.nombre_subCategoria','categorias.nombre_categoria')
-        ->get();
+    $unidad = Ingreso::all()->where('estado', '=', 'Proceso');
     return $unidad;
 }
 

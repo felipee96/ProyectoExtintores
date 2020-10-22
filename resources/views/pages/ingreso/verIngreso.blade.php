@@ -50,9 +50,6 @@
                                             data-target="#editar{{ $item->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                            <button type="submit" class="btn btn-warning btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#ver">
-                                            <i class="material-icons">speaker_notes</i>
-                                        </button>
                                         <!-- Modal -->
                                         <div class="modal" tabindex="-1" role="dialog" id="editar{{ $item->id }}">
                                             <div class="modal-dialog" role="document">
@@ -116,26 +113,6 @@
                                                         </form>
                                                     </div>
                         
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="ver" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="ver">Listado de Ingreso # {{$item->numero_referencia}}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        ...
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,14 +1,16 @@
-<div class="sidebar" data-color="orange" data-background-color="white"
+<div class="sidebar" data-color="orange" data-background-color="white" style="font-size: 4.5rem"
   data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('LOGO A & S') }}
+      <img src="{{ asset('material/img/icono.png') }}" height="25px" width="25px" alt="">
+      {{ __('A & S') }}
     </a>
     <h5 style="text-align: center">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</h5>
   </div>
 
   <div class="sidebar-wrapper">
     <ul class="nav">
+      
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>

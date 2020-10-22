@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Logo')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('A&S')])
 
 @section('content')
 <div class="container" style="height: auto;">
@@ -11,15 +11,6 @@
           <div class="card-header card-header-primary text-center">
             <h4 class="card-title"><strong>{{ __('Register') }}</strong></h4>
             <div class="social-line">
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-google-plus"></i>
-              </a>
             </div>
           </div>
           <div class="card-body ">
@@ -126,12 +117,12 @@
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
-                {{ __('I agree with the ') }} <a href="#">{{ __('Privacy Policy') }}</a>
+                {{ __('I agree with the ') }} <a href="#">{{ __('Acepta politicas de seguridad') }}</a>
               </label>
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Create account') }}</button>
+            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Crear cuenta') }}</button>
           </div>
         </div>
       </form>

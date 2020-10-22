@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes();
@@ -30,10 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('table');
 
 	#Categorias
-	Route::get('categoria','Categoria\CategoriaController@index')->name('categoria');
-	Route::post('categoria','Categoria\CategoriaController@store');
-	Route::put('categoria/{id}','Categoria\CategoriaController@update')->where('id', '[0-9]+');
-	Route::delete('categoria/{id}','Categoria\CategoriaController@destroy')->where('id', '[0-9]+');
+	Route::get('categoria', 'Categoria\CategoriaController@index')->name('categoria');
+	Route::post('categoria', 'Categoria\CategoriaController@store');
+	Route::put('categoria/{id}', 'Categoria\CategoriaController@update')->where('id', '[0-9]+');
+	Route::delete('categoria/{id}', 'Categoria\CategoriaController@destroy')->where('id', '[0-9]+');
 
 	#SubCategoria
 	Route::get('subCategoria', 'SubCategoria\SubCategoriaController@index')->name('subCategoria');
@@ -101,12 +101,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@store');
 	Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
 	Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
-	
+
 
 	#Ruta para combo dinamico Subcategoria
-	Route::get('ingresoL/comboSubcategoria/{id}','ListadoIngreso\ListadoIngresoController@byCategoria');
+	Route::get('ingresoL/comboSubcategoria/{id}', 'ListadoIngreso\ListadoIngresoController@byCategoria');
 	#Ruta para combo dinamico Unidadmedida
-	Route::get('ingresoL/comboUnidadMedida/{id}','ListadoIngreso\ListadoIngresoController@bySubcategoria');
+	Route::get('ingresoL/comboUnidadMedida/{id}', 'ListadoIngreso\ListadoIngresoController@bySubcategoria');
+	#Ruta para cliente dinamico
+	Route::post('client/getClient', 'Encargado\EncargadoController@getClient');
+
 	#Recargas
 	Route::get('recarga', 'Recarga\RecargaController@index')->name('recarga');
 	Route::get('recarga/{id}', 'Recarga\RecargaController@setRecargaListado');
@@ -124,4 +127,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 //Ruta empresa
-

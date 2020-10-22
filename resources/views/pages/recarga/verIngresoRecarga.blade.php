@@ -40,7 +40,7 @@
                                 <tr class="text-center">
                                     <td>{{ $item->fecha_recepcion }}</td>
                                     <td>{{ $item->fecha_entrega }}</td>
-                                    <td>{{ $item->Encargado->nombre_encargado }}</td>
+                                    <td>{{ $item->nombre_encargado }}</td>
                                     <td>{{ $item->Usuario->nombre}}</td>
                                     <td>{{ $item->numero_referencia }}</td>
                                     <td>{{ $item->numero_total_extintor }}</td>
