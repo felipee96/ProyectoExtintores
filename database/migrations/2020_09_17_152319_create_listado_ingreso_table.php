@@ -19,6 +19,7 @@ class CreateListadoIngresoTable extends Migration
             $table->unsignedInteger('unidad_medida_id');
             $table->unsignedInteger('actividad_id');
             $table->integer('numero_extintor');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
 
             #LLaves foreneas

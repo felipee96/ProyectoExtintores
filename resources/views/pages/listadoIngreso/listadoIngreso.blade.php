@@ -90,12 +90,19 @@
                                  </form>
                                  <div>
                                      <div class="row">
-                                         <div class="col">
-                                         <h3 class="mt-2">{{__('Numero total de extintores')}} {{$total}}</h3>
-                                        </div>
+                                         <form method="POST" action="/totalExt/{{$id}}" style="margin-top: 40px;" enctype="/multipart/form-data">
+                                            {{ csrf_field()}}
+                                            {{ method_field('PUT')}}
+                                            <div class="col">
+                                                <h3 class="mt-2">{{__('Numero total de extintores')}} <input type="number" name="numero_total_extintor" id="numero_total_extintor" value="{{$total}}"></h3>
+                                            
+                                            </div>
+                                         </form>
+                                        
                                         <div class="col">
-                                            <a href="{{ url('ingresoact/'.$id) }}"><button id="enviar" class="btn btn-danger"
-                                                    style="float: right">{{ __('Terminar') }}</button></a>
+                                            
+                                                <a href="{{ url('listIngreso/'.$id) }}"><button id="enviar" class="btn btn-danger"
+                                                        style="float: right">{{ __('Listado ingreso') }}</button></a>    
                                         </div>
                                      </div>
                                     </div>

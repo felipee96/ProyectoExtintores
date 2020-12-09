@@ -16,12 +16,13 @@ class CreateUnidadesMedidaTable extends Migration
         Schema::create('unidades_medida', function (Blueprint $table) {
             $table->increments('id');
             $table->string('unidad_medida');
-            $table->integer('cantidad_medida');
+            $table->decimal('cantidad_medida');
             $table->unsignedInteger('sub_categoria_id');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
 
-             #Llaves foraneas 
-             $table->foreign('sub_categoria_id')->references('id')->on('subcategorias');
+            #Llaves foraneas 
+            $table->foreign('sub_categoria_id')->references('id')->on('subcategorias');
         });
     }
 

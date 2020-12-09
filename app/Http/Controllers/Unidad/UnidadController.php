@@ -22,7 +22,7 @@ class UnidadController extends Controller
         return view('pages.unidad.unidad');
     }
     public function store(UnidadCreateRequest $request)
-    {  
+    {
         try {
             $error = 'No se puedo realizar el registro';
             $unidad = new UnidadMedida();
@@ -30,7 +30,7 @@ class UnidadController extends Controller
             $unidad->cantidad_medida = $request->input('cantidad_medida');
             $unidad->sub_categoria_id = $request->input('sub_categoria_id');
             $unidad->save();
-            return back()->with('exito','Se ha realizado el registro con exito');
+            return back()->with('exito', 'Se ha realizado el registro con exito');
         } catch (\Throwable $error) {
             return back()->with($error);
         }
@@ -43,14 +43,15 @@ class UnidadController extends Controller
     }
     public function update(UnidadCreateRequest $request, $id)
     {
-        
+
         try {
             $unidad = UnidadMedida::find($id);
             $unidad->unidad_medida = $request->input('unidad_medida');
             $unidad->cantidad_medida = $request->input('cantidad_medida');
             $unidad->sub_categoria_id = $request->input('sub_categoria_id');
+            $unidad->estado = $request->input('estado');
             $unidad->update();
-            return back()->with('editar','Se ha actualizado el registro con exito');
+            return back()->with('editar', 'Se ha actualizado el registro con exito');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se puedo completar este evento');
         }
@@ -67,8 +68,9 @@ class UnidadController extends Controller
         #Eliminar la Unidad segun su ID
         try {
             $delectUnidad = UnidadMedida::findOrFail($id);
-            $delectUnidad->delete();
-            return back()->with('error','Se elimino con exito');
+            $delectUnidad->estado = 0;
+            $delectUnidad->update();
+            return back()->with('error', 'Se elimino con exito');
         } catch (Exception $a) {
             return 'Error';
         }

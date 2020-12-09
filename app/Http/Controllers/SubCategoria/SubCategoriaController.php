@@ -18,13 +18,13 @@ class SubCategoriaController extends Controller
     public function store(SubCategoriaCreateRequest $request)
     {
         try {
-            $error='No se puedo realizar el registro';
+            $error = 'No se puedo realizar el registro';
             $subCategoria = new SubCategoria();
             $subCategoria->nombre_subCategoria = $request->input('nombre_subCategoria');
             $subCategoria->abreviacion = $request->input('abreviacion');
             $subCategoria->categoria_id = $request->input('categoria_id');
             $subCategoria->save();
-            return back()->with('exito','El registro se realizo con exito');
+            return back()->with('exito', 'El registro se realizo con exito');
         } catch (\Throwable $error) {
             return back()->with($error);
         }
@@ -36,8 +36,9 @@ class SubCategoriaController extends Controller
             $subCategoria->nombre_subCategoria = $request->input('nombre_subCategoria');
             $subCategoria->abreviacion = $request->input('abreviacion');
             $subCategoria->categoria_id = $request->input('categoria_id');
+            $subCategoria->estado = $request->input('estado');
             $subCategoria->update();
-            return redirect('subCategoria')->with('editar','Se ha realizado la actualizacion con exito');
+            return redirect('subCategoria')->with('editar', 'Se ha realizado la actualizacion con exito');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se puedo completar este evento');
         }
@@ -48,11 +49,11 @@ class SubCategoriaController extends Controller
         try {
             $error = 'Error no se puede eliminar este registro';
             $delectsubCategoria = SubCategoria::findOrFail($id);
-            $delectsubCategoria->delete();
-            return back()->with('error','Se elimino el registro con exito');
+            $delectsubCategoria->estado = 0;
+            $delectsubCategoria->update();
+            return back()->with('error', 'Se ha inhabilitado con exito');
         } catch (Exception $error) {
             return back()->with('error', $error);
         }
-        
     }
 }

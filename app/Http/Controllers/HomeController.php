@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $ingresoTotal = Ingreso::count();
         $empresaTotal = Empresa::count();
-        $ingresoPendiente = Ingreso::where('estado', '=', 'Proceso')->count();
+        $ingresoPendiente = Ingreso::where('estado', '=', 'Produccion')->count();
         $empleadosTotal = User::count();
         return view('dashboard',compact('ingresoTotal', 'empresaTotal', 'ingresoPendiente', 'empleadosTotal'));
     }

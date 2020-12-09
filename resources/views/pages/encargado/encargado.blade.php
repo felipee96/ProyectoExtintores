@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'empresa_encargado', 'titlePage' => __('Gestión de Encargados')])
+@extends('layouts.app', ['activePage' => 'empresa_encargado', 'titlePage' => __('Gestión de Clientes')])
 
 @section('content')
 <div class="content">
@@ -42,7 +42,7 @@
                     <div class="card">
                         <div class="card-header card-header-text card-header-warning">
                             <div class="card-text">
-                                <h4 class="card-title">{{ __('Registrar Encargado') }}</h4>
+                                <h4 class="card-title">{{ __('Registrar Clientes') }}</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -59,7 +59,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nombre_encargado">{{ __('Nombre completo del encargado:') }}</label>
+                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }}</label>
                                     <input type="text" class="form-control" id="nombre_encargado" required
                                         name="nombre_encargado">
                                 </div>
@@ -93,7 +93,7 @@
                     <div class="card">
                         <div class="card-header card-header-text card-header-warning">
                             <div class="card-text">
-                                <h4 class="card-title">{{ __('Ver Encargados') }}</h4>
+                                <h4 class="card-title">{{ __('Ver Clientes') }}</h4>
                             </div>
                         </div>
                         <div class="card-body">

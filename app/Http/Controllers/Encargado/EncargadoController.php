@@ -62,6 +62,7 @@ class EncargadoController extends Controller
     }
     public function getClient(Request $request)
     {
+        return $request;
         if ($request->get('query')) {
             $query = $request->get('query');
             $data = DB::table('encargados')
@@ -70,7 +71,7 @@ class EncargadoController extends Controller
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach ($data as $row) {
                 $output .= '
-       <li><a href="#">' . $row->nombre_encargado	 . '</a></li>
+       <li><a href="#">' . $row->nombre_encargado     . '</a></li>
        ';
             }
             $output .= '</ul>';

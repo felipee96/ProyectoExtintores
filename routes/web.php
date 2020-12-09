@@ -20,7 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+
+#Buscar informacion del extintor
+Route::get('info', 'Info\InformacionController@index');
+Route::post('info', 'Info\InformacionController@search');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
@@ -28,6 +31,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
 		return view('pages.table_list');
 	})->name('table');
+
+	#Registro colaborador
+	Route::get('registro', 'UserController@nuevoRegistro');
+	Route::post('registro', 'UserController@guardarRegistro');
 
 	#Categorias
 	Route::get('categoria', 'Categoria\CategoriaController@index')->name('categoria');
@@ -55,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('empresa/{id}', 'Empresa\EmpresaController@destroy')->where('id', '[0-9]+');
 
 	#Encargado
+	Route::post('buscarCliente', 'Encargado\EncargadoController@getClient');
 	Route::get('encargado', 'Encargado\EncargadoController@index')->name('encargado');
 	Route::post('encargado', 'Encargado\EncargadoController@store');
 	Route::put('encargado/{id}', 'Encargado\EncargadoController@update')->where('id', '[0-9]+');
@@ -93,22 +101,28 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('listIngreso', 'Ingreso\IngresoController@getEstadoIngreso')->name('listIngreso');
 	Route::put('ingreso/{id}', 'Ingreso\IngresoController@actualizarI')->where('id', '[0-9]+');
 	Route::put('ingresoL/{id}', 'Ingreso\IngresoController@update')->where('id', '[0-9]+');
+	Route::put('totalExt/{id}', 'Ingreso\IngresoController@updateTotalExtintor')->where('id', '[0-9]+');
 	Route::get('ingresoL/{id}', 'Ingreso\IngresoController@listadoIngreso')->where('id', '[0-9]+');
 	Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
 
+
 	#ListadoIngreso
 	Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
+	Route::get('verListado', 'ListadoIngreso\ListadoIngresoController@verListado');
+	Route::get('listIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@ListadoIngreso')->where('id', '[0-9]+');
 	Route::post('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@store');
 	Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
 	Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
-
+	Route::delete('ingresoListado/{id}', 'ListadoIngreso\ListadoIngresoController@eliminarIngresoListado')->where('id', '[0-9]+');
 
 	#Ruta para combo dinamico Subcategoria
 	Route::get('ingresoL/comboSubcategoria/{id}', 'ListadoIngreso\ListadoIngresoController@byCategoria');
 	#Ruta para combo dinamico Unidadmedida
 	Route::get('ingresoL/comboUnidadMedida/{id}', 'ListadoIngreso\ListadoIngresoController@bySubcategoria');
-	#Ruta para cliente dinamico
-	Route::post('client/getClient', 'Encargado\EncargadoController@getClient');
+	#Ruta para la categoria en recarga
+	Route::get('recarga/getUnidad/{id}', 'Recarga\RecargaController@getUnidad');
+
+
 
 	#Recargas
 	Route::get('recarga', 'Recarga\RecargaController@index')->name('recarga');
@@ -116,6 +130,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('recarga', 'Recarga\RecargaController@store');
 	Route::put('recarga/{id}', 'Recarga\RecargaController@update')->where('id', '[0-9]+');
 	Route::delete('recarga/{id}', 'Recarga\RecargaController@destroy')->where('id', '[0-9]+');
+	#Listado recarga
+	Route::get('infoRecarga/{id}', 'Recarga\RecargaController@informacionListadoRecarga')->where('id', '[0-9]+');
+	#Observaciones
+	Route::get('observacion', 'Observaciones\ObservacionEtiquetaController@index')->name('observacion');
+	Route::post('observacion', 'Observaciones\ObservacionEtiquetaController@store');
 });
 
 Route::group(['middleware' => 'auth'], function () {

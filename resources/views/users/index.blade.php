@@ -127,13 +127,13 @@
                         </div>
                       </div>
                     </td>
-
                   </tr>
                   @endforeach
                 </tbody>
               </table>
             </div>
           </div>
+          <a name="" id="" class="btn btn-primary" href="{{ url('registro') }}" role="button">Nuevo colaborador</a>
         </div>
       </div>
     </div>

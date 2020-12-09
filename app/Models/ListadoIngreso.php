@@ -23,6 +23,6 @@ class ListadoIngreso extends Model
     public function ActividadIngreso()
     {
         //RELACION CON LA TABLA ACTIVIDADES
-        return $this->hasMany(Actividad::class,'actividad_id','id');
+        return $this->hasMany(Actividad::class,'id');
     }
 }

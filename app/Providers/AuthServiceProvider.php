@@ -25,11 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('recepcionista', function($user){
-            return $user->cargo === 'Recepcionista';
+        Gate::define('recepcionista', function ($user) {
+            return $user->cargo === 'Administrador';
         });
 
-        Gate::define('tecnico', function($user){
+        Gate::define('tecnico', function ($user) {
             return $user->cargo === 'Tecnico';
         });
     }

@@ -17,6 +17,7 @@ class CreatePruebasTable extends Migration
             $table->increments('id');
             $table->string('nombre_prueba');
             $table->string('abreviacion_prueba');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

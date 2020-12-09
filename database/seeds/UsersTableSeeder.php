@@ -24,22 +24,12 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('users')->insert([
-            'nombre' => 'Hector fabio',
-            'apellido' => 'Tamayo',
-            'cargo' => 'Tecnico',
+            'nombre' => 'Hector Fabio',
+            'apellido' => 'Tamayo Andrade',
+            'cargo' => 'Administrador',
             'email' => 'hf@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        DB::table('users')->insert([
-            'nombre' => 'Felipe',
-            'apellido' => 'Gutierrez',
-            'cargo' => 'Recepcionista',
-            'email' => 'felipe@corhuila.edu.co',
-            'email_verified_at' => now(),
-            'password' => Hash::make('felipe12345'),
+            'password' => Hash::make('tamayo12345'),
             'created_at' => now(),
             'updated_at' => now()
         ]);

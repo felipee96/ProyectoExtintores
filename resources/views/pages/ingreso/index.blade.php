@@ -1,4 +1,14 @@
 @extends('layouts.app', ['activePage' => 'ingreso', 'titlePage' => __('Formulario de ingreso')])
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.proto.js"></script>
+<script>
+    $(document).ready(function () {
+      $(".chosen-select").chosen();
+   });
+   
+</script>
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -52,13 +62,14 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6" style="margin-top: 44px">
-                                    <label for="Numero">{{__('Numero exintores')}}</label>
+                                    <label for="Numero">{{__('Numero extintores')}}</label>
                                     <input required type="number" class="form-control" id="numero_total_extintor"
                                         name="numero_total_extintor" placeholder="Ej: ###">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="encargado">{{__('Cliente')}}</label>
-                                    <select required id="encargado_id" name="encargado_id" class="form-control">
+                                    <select required id="encargado_id" name="encargado_id"
+                                        class=" form-control chosen-select">
                                         <option value="">Seleccionar</option>
                                         @foreach(Encargado() as $item)
                                         <option value="{{ $item->id }}">
@@ -66,8 +77,8 @@
                                         </option>
                                         @endforeach
                                     </select>
-
-
+                                    <a href="{{ url('encargado') }}"
+                                        class="btn btn-success mt-1">{{__('Registrar')}}</a>
                                 </div>
                             </div>
                     </div>
@@ -84,5 +95,18 @@
 </div>
 </div>
 </div>
-
+@endsection
+@section('script')
+<script type="text/javascript">
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }
+      }
+      for (var selector in config) {
+        $(selector).chosen(config[selector]);
+      }
+</script>
 @endsection

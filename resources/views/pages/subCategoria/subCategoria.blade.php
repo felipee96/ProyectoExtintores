@@ -53,6 +53,7 @@
                   <th>{{ __('Nombre SubCategoria') }}</th>
                   <th>{{ __('Nombre Categoria') }}</th>
                   <th>{{ __('Nombre Abreviacion') }}</th>
+                  <th>{{ __('Estado') }}</th>
                   <th>{{ __('Evento') }}</th>
                 </tr>
               </thead>
@@ -62,6 +63,7 @@
                   <td>{{$item->nombre_subCategoria}}</td>
                   <td>{{$item->Categoria->nombre_categoria}}</td>
                   <td>{{$item->abreviacion}}</td>
+                  <td>{{$item->estado}}</td>
                   <td>
                     <div class="row">
                       <div class="col-2 mt-1">
@@ -83,21 +85,30 @@
                               <form method="POST" action="/subCategoria/{{$item->id}}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT')}}
-                               <div class="form-group">
+                                <div class="form-group">
                                   <label for="nombre_categoria">{{__('Nombre SubCategoria')}}</label>
-                                  <input value="{{$item->nombre_subCategoria}}" type="text" class="form-control" id="nombre_subCategoria" required name="nombre_subCategoria">
+                                  <input value="{{$item->nombre_subCategoria}}" type="text" class="form-control"
+                                    id="nombre_subCategoria" required name="nombre_subCategoria">
                                 </div>
                                 <div class="form-group">
                                   <label for="nombre_categoria">{{__('Nombre Abrevicion')}}</label>
-                                  <input value="{{$item->abreviacion}}" type="text" class="form-control" id="abreviacion" required name="abreviacion">
+                                  <input value="{{$item->abreviacion}}" type="text" class="form-control"
+                                    id="abreviacion" required name="abreviacion">
                                 </div>
                                 <div class="form-group">
                                   <label for="categoria_id">{{ __('Seleccionar Categoria') }}</label>
                                   <select class="form-control" name="categoria_id" id="categoria_id">
                                     <option value="{{$item->id}}">{{$item->nombre_categoria}}</option>
-                                    @foreach (categoria() as $data)
+                                    @foreach (CategoriaActiva() as $data)
                                     <option value="{{ $data->id }}">{{ $data->nombre_categoria }} </option>
                                     @endforeach
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="estado">{{ __('Estado') }}</label>
+                                  <select class="form-control" name="estado" id="estado">
+                                    <option value="1">{{__('Activo')}}</option>
+                                    <option value="0">{{__('Inhabilitado')}}</option>
                                   </select>
                                 </div>
                                 <div class="modal-footer">
@@ -152,7 +163,7 @@
                 <label for="categoria_id">{{ __('Seleccionar Categoria') }}</label>
                 <select class="form-control" name="categoria_id" id="categoria_id">
                   <option value="">---SELECCIONAR---</option>
-                  @foreach (categoria() as $item)
+                  @foreach (CategoriaActiva() as $item)
                   <option value="{{ $item->id }}">{{ $item->nombre_categoria }} </option>
                   @endforeach
                 </select>

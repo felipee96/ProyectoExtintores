@@ -27,8 +27,8 @@
                                 <tr class="text-left">
                                     <th>{{ __('Fecha de ingreso') }}</th>
                                     <th>{{ __('Fecha de entrega') }}</th>
-                                    <th>{{ __('Encargado') }}</th>
-                                    <th>{{ __('Usuario') }}</th>
+                                    <th>{{ __('Cliente') }}</th>
+                                    <th>{{ __('Colaborador') }}</th>
                                     <th>{{ __('Nro referencia') }}</th>
                                     <th>{{ __('No extintores') }}</th>
                                     <th>{{ __('Estado') }}</th>

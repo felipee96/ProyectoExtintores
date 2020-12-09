@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Encargado;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,13 +13,6 @@ class EncargadoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('encargados')->insert([
-            'empresa_id' => '1',
-            'nombre_encargado' => 'Encargado por seeders',
-            'numero_celular' => '3223009929',
-            'email' => 'Encargado@gmail.com',
-            'direccion' => 'Calle 53a',
-            'numero_serial' => '09222',
-        ]);
+        factory(Encargado::class)->times(1000)->create();
     }
 }

@@ -17,6 +17,7 @@ class CreateCambioParteExtintorTable extends Migration
             $table->increments('id');
             $table->string('nombre_parte_cambio');
             $table->string('referencia');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

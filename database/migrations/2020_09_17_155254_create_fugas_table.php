@@ -17,6 +17,7 @@ class CreateFugasTable extends Migration
             $table->increments('id');
             $table->string('nombre_fuga');
             $table->string('abreviacion_fuga');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

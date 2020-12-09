@@ -19,7 +19,8 @@ class ListadoIngresoController extends Controller
 
     public function byCategoria($id)
     {
-        $data = SubCategoria::select('id', 'nombre_subCategoria')->where('categoria_id', '=', $id)->get();
+        $data = SubCategoria::select('id', 'nombre_subCategoria')->where('categoria_id', '=', $id)
+            ->where('estado', '=', 1)->get();
         //traer las subcategorias que pertenezcan a esa categoria 
         //return Subcategoria::where('categoria_id', $id)->get();
         return response()->json($data);
@@ -34,10 +35,10 @@ class ListadoIngresoController extends Controller
     public function store(ListadoIngresoCreate $request)
     {
         $numExtRecibido = $request->numero_extintor;
-        $totalExtIngreso = Ingreso::where('id', $request->ingreso_id)->select('id','numero_total_extintor')->first();
+        $totalExtIngreso = Ingreso::where('id', $request->ingreso_id)->select('id', 'numero_total_extintor')->first();
         $totalExtIngreso = $totalExtIngreso->numero_total_extintor;
         $saveExtTotal = ListadoIngreso::where('ingreso_id', $request->ingreso_id)->sum('numero_extintor');
-        $total = (($saveExtTotal  + $numExtRecibido ) - $totalExtIngreso);
+        $total = (($saveExtTotal  + $numExtRecibido) - $totalExtIngreso);
         $saveExtTotal = $numExtRecibido + $saveExtTotal;
         if ($saveExtTotal <= $totalExtIngreso) {
             $listadoIngreso = new ListadoIngreso();
@@ -46,11 +47,28 @@ class ListadoIngresoController extends Controller
             $listadoIngreso->numero_extintor = $request->input('numero_extintor');
             $listadoIngreso->actividad_id = $request->input('actividad');
             $listadoIngreso->save();
-            return back()->with('exito','Se guardo correctamente : '.$total.' restantes');
-        }else{
+
+            return back()->with('exito', 'Se guardo correctamente : ' . $total . ' restantes');
+        } else {
             return back()->with('error', 'Numero de extintores al maximo : ' . $total . ' restantes');
         }
-        
+    }
+    public function ListadoIngreso($id)
+    {
+
+        try {
+            $numeroReferencia = $id;
+            $listIngreso = ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad')
+                ->where('ingreso_id', $id)
+                ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')->get();
+            if ($listIngreso) {
+                return view('pages.listadoIngreso.verListadoIngreso', compact('numeroReferencia', 'listIngreso'));
+            } else {
+                return back('error', 'No se encuentrar extintores registrados con este numero de referencia');
+            }
+        } catch (\Throwable $th) {
+            return back('error', 'No se encuentrar disponible en estos momentos');
+        }
     }
     public function update(ListadoIngresoCreate $request, $id)
     {
@@ -70,9 +88,15 @@ class ListadoIngresoController extends Controller
         try {
             $listadoIngreso = ListadoIngreso::findOrFail($id);
             $listadoIngreso->delete();
-            return back()->with('error', 'Se elimino el registro correctamente');
+            return redirect('ingresoL/' . $listadoIngreso->ingreso_id)->with('error', 'Se elimino el registro correctamente. Numero de extintores disponibles ' . $listadoIngreso->numero_extintor);
         } catch (Exception $a) {
             return back()->with('errors', 'No se puedo eliminar este registro');
         }
+    }
+    public function eliminarIngresoListado($id)
+    {
+        $listadoIngreso = ListadoIngreso::findOrFail($id);
+        $listadoIngreso->delete();
+        return back();
     }
 }

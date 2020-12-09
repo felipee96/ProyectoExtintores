@@ -1,11 +1,15 @@
 @extends('layouts.app', ['activePage' => 'recargas', 'titlePage' => __('Gestion De Orden De Producción')])
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="container">
+                    @if (session('exito'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('exito') }}
+                    </div>
+                    @endif
                     <div class="card">
                         <div class="card-header card-header-text card-header-warning">
                             <div class="card-text">
@@ -34,9 +38,9 @@
                                         <td>{{$item->fecha_recepcion}}</td>
                                         <td>{{$item->cantidad_medida}}</td>
                                         <td>{{$item->unidad_medida}}</td>
-                                        <td>{{$item->abreviacion}}</td>
+                                        <td>{{$item->nombre_subCategoria}}</td>
                                         <td>{{$item->nombre_categoria}}</td>
-                                        <td>{{$item->abreviacion_actividad}}</td>
+                                        <td>{{$item->nombre_actividad}}({{$item->abreviacion_actividad}})</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -51,6 +55,25 @@
                         <div class="card-text">
                             <h4 class="card-title">{{ __('Ingresar recarga') }}</h4>
                         </div>
+                        <div class="row">
+                            @if (session('advertencia'))
+                            <div class="alert alert-warning" role="alert">
+                                {{ session('advertencia') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endif
+                            <div class="col">
+                                <h3 style="color: black">{{__('Etiqueta asignar ')}} {{$primerTiquete}}</h3>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Observación etiqueta
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="card-body">
                             <form method="POST" action="{{ url('/recarga') }}">
                                 {{ csrf_field() }}
@@ -58,41 +81,47 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="nro_tiquete_anterior">{{ __('N° tiquete anterior:') }}</label>
-                                            <input type="number" class="form-control" id="nro_tiquete_anterior" required
+                                            <input type="text" class="form-control" id="nro_tiquete_anterior"
                                                 name="nro_tiquete_anterior">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="nro_tiquete_nuevo">{{ __('N° tiquete nuevo:') }}</label>
-                                            <input type="number" class="form-control" id="nro_tiquete_nuevo" required
-                                                name="nro_tiquete_nuevo">
+                                            <input type="text" class="form-control" id="nro_tiquete_nuevo" required
+                                                value="{{$primerTiquete}}" name="nro_tiquete_nuevo">
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="nro_extintor">{{ __('N° interno cliente:') }}</label>
-                                            <input type="number" disabled class="form-control" id="cliente" required
-                                                name="nro_extintor" value="{{$clienteS}}">
-                                        </div>
-                                    </div>
+
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="nro_extintor">{{ __('N° de extintor:') }}</label>
                                             <input type="number" class="form-control" id="nro_extintor" required
-                                                name="nro_extintor">
+                                                value="1" name="nro_extintor">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="agente">{{ __('Agente:') }}</label>
-                                            <select class="form-control" required name="agente" id="agente">
+                                            <select name="agente" id="agente" class="form-control">
                                                 <option value="">---SELECCIONAR---</option>
-                                                @foreach (SubCategoria() as $item)
-                                                <option value="{{ $item->id}}">{{ $item->nombre_subCategoria}} </option>
+                                                @foreach (SubCategoriaActiva() as $item)
+                                                <option value="{{ $item->id}}">{{ $item->nombre_subCategoria}}
+                                                    --->{{$item->nombre_categoria}}
+                                                </option>
                                                 @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="capacidad">{{ __('Unidad de medida') }}</label>
+                                            <select name="capacidadProducto" id="capacidadProducto"
+                                                class="form-control">
+                                                <option value="">{{__('Seleccione unidad de medida')}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -112,29 +141,26 @@
                                 <div class="row mt-5">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="capacidad">{{ __('Capacidad del producto') }}</label>
-                                            <input type="number" class="form-control" id="capacidad" required
-                                                name="capacidad">
+                                            <label for="nro_extintor">{{ __('N° interno cliente:') }}</label>
+                                            <input type="text" class="form-control" id="cliente" required
+                                                name="nro_interno_cliente" value="{{$clienteS}}" readonly>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class=" col">
                                         <div class="form-group">
-                                            <label for="capacidad">{{ __('Unidad de medida') }}</label>
-                                            <input type="text" class="form-control" id="unidad" required name="unidad">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="usuario_recarga_id">{{ __('N° de usuario:') }}</label>
-                                            <input type="text" class="form-control" id="usuario_recarga_id" required
-                                                name="usuario_recarga_id" value="{{ Auth::user()->id }}" readonly>
+                                            <label for="usuario_recarga_id">{{ __('Colaborador A&S') }}</label>
+                                            <p class="form-control">{{ Auth::user()->nombre}}
+                                                {{ Auth::user()->apellido}}</p>
+                                            <input type=" text" class="form-control" hidden id="usuario_recarga_id"
+                                                required name="usuario_recarga_id" value="{{ Auth::user()->id}}"
+                                                readonly>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="ingreso_recarga_id">{{ __('N° de referencia:') }}</label>
                                             <input type="text" class="form-control" id="ingreso_recarga_id" required
-                                                disabled value="{{$id}}" name="ingreso_recarga_id">
+                                                value="{{$id}}" name="ingreso_recarga_id" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -143,38 +169,47 @@
 
                                     <div class="row">
                                         @foreach (cambioParte() as $item)
+
                                         <div class="col-3">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" id="cambio_parte_id" name="cambio_parte_id[]"
-                                                    value="{{$item->id}}">{{$item->nombre_parte_cambio}} 
-                                            </label>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="cambioParte[]"
+                                                        value="{{$item->id}}">({{$item->id}}){{$item->nombre_parte_cambio}}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
                                         @endforeach
                                     </div>
 
                                 </div>
-                                <h3 class="text-center text-warning">{{__('Fugas')}}</h3>
+                                <h3 class="text-center text-warning">{{__('Prueba')}}</h3>
                                 <div class="form-group">
-                                    @foreach (Fuga() as $item)
-                                    <div class="form-check form-check-inline">
+                                    @foreach (Prueba() as $item)
+                                    <div class="form-check form-check-radio form-check-inline">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="fuga_id[]"
-                                                value="{{$item->id}}">{{$item->abreviacion_fuga}}
+                                            <input class="form-check-input" type="checkbox" name="prueba_id[]"
+                                                id="prueba_id[]"
+                                                value="{{$item->id}}">({{$item->abreviacion_prueba}}){{$item->nombre_prueba}}
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
+
                                         </label>
                                     </div>
                                     @endforeach
                                 </div>
-                                <h3 class="text-center text-warning">{{('Prueba')}}</h3>
+                                <h3 class="text-center text-warning">{{('Fugas')}}</h3>
                                 <div class="form-group">
-                                    @foreach (Prueba() as $item)
+                                    @foreach (Fuga() as $item)
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="prueba_id[]"
-                                                value="{{$item->id}}">{{$item->abreviacion_prueba}}
-                                            <span class="form-check-sign">
+                                            <input class="form-check-input" type="radio" name="fuga_id"
+                                                value="{{$item->id}}">({{$item->abreviacion_fuga}})
+                                            {{$item->nombre_fuga}}
+                                            <span class="circle">
                                                 <span class="check"></span>
                                             </span>
                                         </label>
@@ -183,11 +218,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="observacion">{{ __('Observación:') }}</label>
-                                    <input type="text" class="form-control" id="observacion" required
-                                        name="observacion">
+                                    <input type="text" class="form-control" id="observacion" name="observacion">
                                 </div>
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
+
                             </form>
+                            <a href="{{ url('infoRecarga/'.$id) }}">
+                                <button class="btn btn-primary">{{ __('Ver listado') }}</button></a>
                         </div>
                     </div>
                 </div>
@@ -195,4 +232,58 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro de daño de etiquete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url('/observacion') }}">
+                    {{ csrf_field()}}
+                    <div class="form-group">
+                        <label for="nro_extintor">{{ __('N° referencia') }}</label>
+                        <input type="number" class="form-control" id="numero" required name="numero" value="{{$id}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="nro_extintor">{{ __('N° etiqueta') }}</label>
+                        <input type="number" value="{{$primerTiquete}}" class="form-control" id="numero_etiqueta"
+                            required name="nro_extintor">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nro_extintor">{{ __('Motivo') }}</label>
+                        <textarea id="motivo" name="motivo" class="md-textarea form-control" rows="3"></textarea>
+                    </div>
+                    <div style="text-align:center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $("#agente").change(function(){
+      var categoria = $(this).val();
+      $.get('getUnidad/'+categoria, function(data){
+//esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+          var producto_select = '<option value="">Seleccione Porducto</option>'
+            for (var i=0; i<data.length;i++)
+              producto_select+='<option value="'+data[i].id+'">'+data[i].cantidad_medida+'</option>';
+
+            $("#capacidadProducto").html(producto_select);
+
+      });
+    });
+  });
+</script>
 @endsection

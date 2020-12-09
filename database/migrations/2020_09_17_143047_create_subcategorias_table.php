@@ -18,6 +18,7 @@ class CreateSubcategoriasTable extends Migration
             $table->string('nombre_subCategoria');
             $table->unsignedInteger('categoria_id');
             $table->string('abreviacion');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
 
             #Llaves foraneas 

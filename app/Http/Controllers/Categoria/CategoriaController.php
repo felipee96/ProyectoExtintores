@@ -29,6 +29,7 @@ class CategoriaController extends Controller
         try {
             $categoria = Categoria::find($id);
             $categoria->nombre_categoria = $request->input('nombre_categoria');
+            $categoria->estado = $request->input('estado');
             $categoria->update();
             return redirect('categoria');
         } catch (\Throwable $th) {
@@ -39,13 +40,13 @@ class CategoriaController extends Controller
     {
         #Eliminar una categoria segun su ID
         try {
-            $error='Error no se puede eliminar este registro';
+            $error = 'Error no se puede eliminar este registro';
             $delectCategoria = Categoria::findOrFail($id);
-            $delectCategoria->delete();
-            return back()->with('error','Se ha eliminado con exito');
+            $delectCategoria->estado = 0;
+            $delectCategoria->update();
+            return back()->with('error', 'Se ha inhabilitado la categoria con exito');
         } catch (Exception $error) {
-            return back()->with('error',$error);
+            return back()->with('error', $error);
         }
-        
     }
 }

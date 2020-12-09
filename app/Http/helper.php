@@ -1,23 +1,51 @@
 <?php
 
 use App\Models\Ingreso;
-use Illuminate\Support\Facades\DB;
+use App\models\Observacion;
 
 function Categoria()
 {
-    return App\Models\Categoria::select('id','nombre_categoria')->get();
+    return App\Models\Categoria::select('id', 'nombre_categoria', 'estado')->get();
+}
+function CategoriaActiva()
+{
+    return App\Models\Categoria::select('id', 'nombre_categoria', 'estado')->where('estado', '=', 1)->get();
 }
 function SubCategoria()
 {
-    return App\Models\SubCategoria::select('id', 'nombre_subCategoria', 'categoria_id', 'abreviacion')->get();
+    return App\Models\SubCategoria::select('id', 'nombre_subCategoria', 'categoria_id', 'abreviacion', 'estado')->get();
 }
+function SubCategoriaActiva()
+{
+    return App\Models\SubCategoria::select(
+        'subcategorias.id',
+        'subcategorias.nombre_subCategoria',
+        'subcategorias.categoria_id',
+        'subcategorias.abreviacion',
+        'subcategorias.estado',
+        'categorias.nombre_categoria'
+    )
+        ->join('categorias', 'subcategorias.categoria_id', '=', 'categorias.id')
+        ->where('subcategorias.estado', '=', 1)->get();
+}
+
 function Unidad()
 {
-    return App\Models\UnidadMedida::select('id', 'unidad_medida', 'cantidad_medida', 'sub_categoria_id')->get();
+    return App\Models\UnidadMedida::select(
+        'unidades_medida.id',
+        'unidades_medida.unidad_medida',
+        'unidades_medida.cantidad_medida',
+        'subcategorias.nombre_subCategoria',
+        'categorias.nombre_categoria'
+    )
+        ->join('subcategorias', 'unidades_medida.sub_categoria_id', '=', 'subcategorias.id')
+        ->join('categorias', 'subcategorias.categoria_id', '=', 'categorias.id')
+        ->where('unidades_medida.estado', '=', 1)->get();
 }
 function Empresa()
 {
-    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'created_at')->get();
+    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'created_at')
+        ->get();
 }
 function Encargado()
 {
@@ -25,7 +53,7 @@ function Encargado()
 }
 function Prueba()
 {
- return App\Models\Prueba::select('id','nombre_prueba','abreviacion_prueba')->get();
+    return App\Models\Prueba::select('id', 'nombre_prueba', 'abreviacion_prueba')->get();
 }
 function Fuga()
 {
@@ -48,4 +76,7 @@ function ListadoIngreso()
     $unidad = Ingreso::all()->where('estado', '=', 'Proceso');
     return $unidad;
 }
-
+function Observaciones()
+{
+    return Observacion::all();
+}
