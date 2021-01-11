@@ -13,6 +13,6 @@ class EncargadoTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Encargado::class)->times(1000)->create();
+        factory(Encargado::class)->times(10)->create();
     }
 }

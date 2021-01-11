@@ -18,7 +18,7 @@ class CreateEncargadosTable extends Migration
             $table->unsignedInteger('empresa_id');
             $table->string('nombre_encargado');
             $table->bigInteger('numero_celular');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('direccion');
             $table->integer('numero_serial');
             $table->timestamps();

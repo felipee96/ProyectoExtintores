@@ -151,4 +151,10 @@ class IngresoController extends Controller
             return redirect('listIngreso')->with('error', 'No se actualizo  el ingreso');
         }
     }
+    public function imprimirTiquete($id)
+    {
+        $generarCodigo = NumeroTiquete::select('*')->where('ingreso_id', $id)->get();
+        // return $generarCodigo;
+        return view('barCode', compact('generarCodigo'));
+    }
 }

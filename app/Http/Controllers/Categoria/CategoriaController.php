@@ -26,6 +26,7 @@ class CategoriaController extends Controller
     }
     public function update(CategoriaCreateRequest $request, $id)
     {
+        return 'Hola';
         try {
             $categoria = Categoria::find($id);
             $categoria->nombre_categoria = $request->input('nombre_categoria');

@@ -18,6 +18,7 @@ class CreateNumeroTiquetes extends Migration
             $table->integer('numero_tiquete');
             $table->unsignedInteger('ingreso_id')->nullable();
             $table->unsignedInteger('recarga_id')->nullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
 
             $table->foreign('ingreso_id')->references('id')->on('ingresos');

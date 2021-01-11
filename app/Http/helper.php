@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Carretilla;
 use App\Models\Ingreso;
 use App\models\Observacion;
+use App\Models\Portatiles;
 
 function Categoria()
 {
@@ -79,4 +81,12 @@ function ListadoIngreso()
 function Observaciones()
 {
     return Observacion::all();
+}
+function ExtintoresPortatiles()
+{
+    return Portatiles::all();
+}
+function ExtintoresCarretilla()
+{
+    return Carretilla::all();
 }

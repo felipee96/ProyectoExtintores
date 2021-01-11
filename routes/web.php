@@ -104,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('totalExt/{id}', 'Ingreso\IngresoController@updateTotalExtintor')->where('id', '[0-9]+');
 	Route::get('ingresoL/{id}', 'Ingreso\IngresoController@listadoIngreso')->where('id', '[0-9]+');
 	Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
+	Route::get('imprimirPdf/{id}', 'Ingreso\IngresoController@imprimirTiquete')->where('id', '[0-9]+');
 
 
 	#ListadoIngreso
@@ -122,8 +123,6 @@ Route::group(['middleware' => 'auth'], function () {
 	#Ruta para la categoria en recarga
 	Route::get('recarga/getUnidad/{id}', 'Recarga\RecargaController@getUnidad');
 
-
-
 	#Recargas
 	Route::get('recarga', 'Recarga\RecargaController@index')->name('recarga');
 	Route::get('recarga/{id}', 'Recarga\RecargaController@setRecargaListado');
@@ -135,6 +134,11 @@ Route::group(['middleware' => 'auth'], function () {
 	#Observaciones
 	Route::get('observacion', 'Observaciones\ObservacionEtiquetaController@index')->name('observacion');
 	Route::post('observacion', 'Observaciones\ObservacionEtiquetaController@store');
+	#Hocol
+	Route::get('verHocol', 'Hocol\hocolController@verHocol')->name('ingreso-hocol');
+	Route::get('infoHocol/{id}', 'Hocol\hocolController@infoHocol')->where('id', '[0-9]');
+	Route::get('hocol', 'Hocol\hocolController@index')->name('hocol');
+	Route::post('hocol', 'Hocol\hocolController@store');
 });
 
 Route::group(['middleware' => 'auth'], function () {

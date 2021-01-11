@@ -26,7 +26,29 @@
       </li>
       @endcan
 
+      <li class="nav-item {{ $activePage == 'hocol' ? ' active' : '' }}">
+        <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">streetview</i>
+          <p>
+            {{__('Hocol')}}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{{ url('hocol') }}">
+            <i class="material-icons">addchart</i>
+            <p>{{ __('Nuevo ingreso') }}</p>
+          </a>
+          <div class="dropdown-divider"></div>
+          @can('recepcionista')
+          <a class="dropdown-item" href="{{ route('ingreso-hocol') }}">
+            <i class="material-icons">visibility</i>
+            <p>{{ __('Ver ingresos') }}</p>
+          </a>
+          @endcan
 
+        </div>
+      </li>
       <li class="nav-item {{ $activePage == 'ingreso' ? ' active' : '' }}">
         <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <i class="material-icons">pan_tool</i>

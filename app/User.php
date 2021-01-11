@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Hocol;
 use App\Models\Ingreso;
 use App\Models\Recarga;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -48,5 +49,10 @@ class User extends Authenticatable
     {
         //RELACION CON RECARGA
         return $this->hasMany(Recarga::class, 'usuario_recarga_id', 'id');
+    }
+    public function hocolRegistroColaborador()
+    {
+        //RELACION CON RECARGA
+        return $this->hasMany(Hocol::class, 'id_colaborador', 'id');
     }
 }

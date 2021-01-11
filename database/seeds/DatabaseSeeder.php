@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([FugaTableSeeder::class]);
         $this->call([CambioParteTableSeeder::class]);
         $this->call([ActividadTableSeeder::class]);
+        $this->call([HocolExtintorPortatil::class]);
+        $this->call([HocolExtintoresCarretilla::class]);
     }
 }

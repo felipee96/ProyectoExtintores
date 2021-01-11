@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Recarga;
 
 use App\Http\Controllers\Controller;
 use App\Models\{Ingreso, NumeroTiquete, Recarga, UnidadMedida};
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Utilities\{CambioPartesListado, ConsultaRecarga, FugaListado};
-use App\User;
+use Illuminate\Http\Request;
+
 
 class RecargaController extends Controller
 {
