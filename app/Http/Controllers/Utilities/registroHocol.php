@@ -26,11 +26,14 @@ trait RegistroHocol
     }
     public function listadoPortatil($id, $listadoPartePortatil)
     {
-        if ($listadoPartePortatil) {
-            foreach ($listadoPartePortatil as $key => $value) {
+
+        if($listadoPartePortatil){
+            foreach ($listadoPartePortatil as $key => $value){
+                $ArrayPartes = (explode('-', $value));
                 $nuevoListadoPortatil =  new ListadoPortatil();
                 $nuevoListadoPortatil->id_registro_hocol = $id;
-                $nuevoListadoPortatil->id_extintores_portatil = $value;
+                $nuevoListadoPortatil->id_extintores_portatil =trim($ArrayPartes[0]);
+                $nuevoListadoPortatil->estado =trim($ArrayPartes[1]);
                 $nuevoListadoPortatil->save();
             }
         }
@@ -40,9 +43,11 @@ trait RegistroHocol
     {
         if ($listadoParteCarretilla) {
             foreach ($listadoParteCarretilla as $key => $value) {
+                $ArrayPartes = (explode('-', $value));
                 $nuevoListadoCarretilla =  new ListadoCarretilla();
                 $nuevoListadoCarretilla->id_registro_hocol = $id;
-                $nuevoListadoCarretilla->id_extintores_carretilla = $value;
+                $nuevoListadoCarretilla->id_extintores_carretilla = trim($ArrayPartes[0]);
+                $nuevoListadoCarretilla->estado =trim($ArrayPartes[1]);
                 $nuevoListadoCarretilla->save();
             }
         }

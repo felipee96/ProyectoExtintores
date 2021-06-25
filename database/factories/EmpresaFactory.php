@@ -11,5 +11,6 @@ $factory->define(Empresa::class, function (Faker $faker) {
         'nombre_empresa' => $faker->text($maxNbChars = 20),
         'nit' => $faker->unixTime($max = 'now'),
         'direccion' => $faker->streetAddress(),
+        'numero_contacto' => $faker->phoneNumber(),
     ];
 });

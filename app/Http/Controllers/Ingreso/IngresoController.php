@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Ingreso;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ingreso;
-use App\models\NumeroTiquete;
+use App\Models\NumeroTiquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -68,7 +68,7 @@ class IngresoController extends Controller
             $total = $request->input('numero_total_extintor');
             $ingreso->estado = 'Produccion';
             /**
-             * Hacemos llamado al metodo donde nos indica la etiqueta anterior 
+             * Hacemos llamado al metodo donde nos indica la etiqueta anterior
              * y hace la suma de los extintores que estamos ingresando para generar las etiquetas
              * pertinentes
              */

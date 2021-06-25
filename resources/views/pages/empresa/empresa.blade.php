@@ -62,6 +62,11 @@
                                     <label for="direccion">{{ __('Direccion:') }}</label>
                                     <input type="text" class="form-control" id="direccion" required name="direccion">
                                 </div>
+                                <div class="form-group">
+                                    <label for="direccion">{{ __('Numero de contacto:') }}</label>
+                                    <input type="number" class="form-control" id="numero_contacto" required
+                                        name="numero_contacto">
+                                </div>
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
                             </form>
                         </div>
@@ -83,6 +88,7 @@
                                         <th>{{ __('Nombre empresa') }}</th>
                                         <th>{{ __('Nit') }}</th>
                                         <th>{{ __('Direccion') }}</th>
+                                        <th>{{ __('Numero de contacto') }}</th>
                                         <th>{{ __('Evento') }}</th>
                                     </tr>
                                 </thead>
@@ -92,6 +98,7 @@
                                         <td>{{ $item->nombre_empresa }}</td>
                                         <td>{{ $item->nit }}</td>
                                         <td>{{ $item->direccion }}</td>
+                                        <td>{{ $item->numero_contacto }}</td>
                                         <td>
                                             <div class="row">
                                                 <div class="col-2 mt-1">
@@ -136,6 +143,14 @@
                                                                         <input type="text" class="form-control"
                                                                             id="direccion" required name="direccion"
                                                                             value="{{$item->direccion}}">
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label
+                                                                            for="nit">{{ __('Numero contacto:') }}</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="nit" required name="nit"
+                                                                            value="{{$item->numero_contacto}}">
                                                                     </div>
 
                                                                     <div class="modal-footer">

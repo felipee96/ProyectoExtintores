@@ -74,13 +74,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('prueba/{id}', 'Prueba\PruebaController@update')->where('id', '[0-9]+');
 	Route::delete('prueba/{id}', 'Prueba\PruebaController@destroy')->where('id', '[0-9]+');
 
-	#Fufa 
+	#Fufa
 	Route::get('fuga', 'Fuga\FugaController@index')->name('fuga');
 	Route::post('fuga', 'Fuga\FugaController@store');
 	Route::put('fuga/{id}', 'Fuga\FugaController@update')->where('id', '[0-9]+');
 	Route::delete('fuga/{id}', 'Fuga\FugaController@destroy')->where('id', '[0-9]+');
 
-	#CambioParte 
+	#CambioParte
 	Route::get('cambio', 'CambioParte\CambioPartesController@index')->name('cambio');
 	Route::post('cambio', 'CambioParte\CambioPartesController@store');
 	Route::put('cambio/{id}', 'CambioParte\CambioPartesController@update')->where('id', '[0-9]+');
@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('usuario/{id}', 'UserController@update')->where('id', '[0-9]+');
 	Route::delete('usuario/{id}', 'UserController@destroy')->where('id', '[0-9]+');
 
-	#Ingreso 
+	#Ingreso
 	Route::get('ingreso/{id}', 'Ingreso\IngresoController@index')->name('ingreso');
 	Route::get('listIngreso', 'Ingreso\IngresoController@getEstadoIngreso')->name('listIngreso');
 	Route::put('ingreso/{id}', 'Ingreso\IngresoController@actualizarI')->where('id', '[0-9]+');
@@ -105,7 +105,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('ingresoL/{id}', 'Ingreso\IngresoController@listadoIngreso')->where('id', '[0-9]+');
 	Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
 	Route::get('imprimirPdf/{id}', 'Ingreso\IngresoController@imprimirTiquete')->where('id', '[0-9]+');
-
 
 	#ListadoIngreso
 	Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
@@ -136,9 +135,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('observacion', 'Observaciones\ObservacionEtiquetaController@store');
 	#Hocol
 	Route::get('verHocol', 'Hocol\hocolController@verHocol')->name('ingreso-hocol');
-	Route::get('infoHocol/{id}', 'Hocol\hocolController@infoHocol')->where('id', '[0-9]');
+	Route::get('verMas/{id}', 'Hocol\hocolController@getMore')->where('id', '[0-9]+');
 	Route::get('hocol', 'Hocol\hocolController@index')->name('hocol');
 	Route::post('hocol', 'Hocol\hocolController@store');
+	Route::get('export', 'Hocol\hocolController@export')->name('export.hocol');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -148,5 +148,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-
+//PDF
+Route::name('print')->get('/imprimir', 'GeneradorController@imprimir');
 //Ruta empresa

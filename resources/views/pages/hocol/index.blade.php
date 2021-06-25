@@ -56,7 +56,7 @@
                                         <th>{{$item['hidrostatica']}}</th>
                                         <th>{{$item['observacion']}}</th>
                                         <th>{{$item['fecha_inspeccion']}}</th>
-                                        <th><a href="{{ url('infoHocol/'.$item['id']) }}"><button type="submit"
+                                        <th><a href="{{ url('verMas/'.$item['id']) }}"><button type="submit"
                                                     class="btn btn-warning btn-fab btn-fab-mini btn-round">
                                                     <i class="material-icons">add</i>
                                                 </button></a>

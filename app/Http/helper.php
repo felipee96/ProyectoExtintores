@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Carretilla;
-use App\Models\Ingreso;
-use App\models\Observacion;
-use App\Models\Portatiles;
+use App\Models\{Carretilla, Ingreso, Observacion, Portatiles};
 
 function Categoria()
 {
@@ -46,7 +43,7 @@ function Unidad()
 }
 function Empresa()
 {
-    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'created_at')
+    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'numero_contacto', 'created_at')
         ->get();
 }
 function Encargado()

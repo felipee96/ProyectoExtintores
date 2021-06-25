@@ -23,13 +23,14 @@ class EmpresaController extends Controller
             $empresa->nombre_empresa = $request->input('nombre_empresa');
             $empresa->nit = $request->input('nit');
             $empresa->direccion = $request->input('direccion');
+            $empresa->numero_contacto = $request->input('numero_contacto');
             $empresa->save();
             return back()->with('exito', 'Se guardo el registro correctamente');
         } catch (\Throwable $th) {
             return back()->with('errors', 'No se pudo crear el registro');
         }
     }
-    
+
     public function update(EmpresaRequest $request, $id)
     {
         try {
@@ -37,6 +38,7 @@ class EmpresaController extends Controller
             $empresa->nombre_empresa = $request->input('nombre_empresa');
             $empresa->nit = $request->input('nit');
             $empresa->direccion = $request->input('direccion');
+            $empresa->numero_contacto = $request->input('numero_contacto');
             $empresa->update();
             return back()->with('editar', 'Se actualizo el registro correctamente');
         } catch (\Throwable $th) {
