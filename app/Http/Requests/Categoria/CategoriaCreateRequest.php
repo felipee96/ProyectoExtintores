@@ -24,14 +24,15 @@ class CategoriaCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_categoria'=>'required|min:5',
+            'nombre_categoria' => 'required|min:5|unique:categorias,nombre_categoria',
         ];
     }
     public function messages()
     {
         return [
-            'nombre_categoria.required'=>'Ingresa nombre de la categoria',
-            'nombre_categoria.min' => 'El nombre de la empresa  debe contener más de 5 caracteres',
+            'nombre_categoria.required' => 'Ingresa nombre de la categoria',
+            'nombre_categoria.min' => 'El nombre de la categoria  debe contener más de 5 caracteres',
+            'nombre_categoria.unique' => 'El nombre de la categoria  debe ser unico',
         ];
     }
 }

@@ -9,7 +9,7 @@ use App\Models\{Hocol, ListadoCarretilla, ListadoPortatil};
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
-class hocolController extends Controller
+class HocolController extends Controller
 {
     use RegistroHocol;
     public function index()

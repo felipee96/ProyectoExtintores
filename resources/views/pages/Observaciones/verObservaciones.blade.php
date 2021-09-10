@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header card-header-text card-header-warning">
                         <div class="card-text">
-                            <h4 class="card-title">{{ __('Ver Fugas') }}</h4>
+                            <h4 class="card-title">{{ __('Ver observaciones') }}</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -40,7 +40,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>{{ __('Numero etiqueta') }}</th>
-                                    <th>{{ __('Observacion') }}</th>
+                                    <th>{{ __('Observación') }}</th>
                                     <th>{{ __('Fecha') }}</th>
                                 </tr>
                             </thead>

@@ -24,7 +24,7 @@ class CambioPartesCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_parte_cambio' => 'required|min:5',
+            'nombre_parte_cambio' => 'required|min:5|unique:cambio_parte_extintor,nombre_parte_cambio',
             'referencia' => 'required|min:1',
         ];
     }
@@ -33,6 +33,7 @@ class CambioPartesCreateRequest extends FormRequest
         return [
             'nombre_parte_cambio.required' => 'Ingresa nombre de la parte de cambio',
             'nombre_parte_cambio.min' => 'El nombre de la parte de cambio  debe contener más de 1 caracteres',
+            'nombre_parte_cambio.unique' => 'El nombre de la parte debe ser unico',
 
             'referencia.required' => 'Ingresa nombre de la abreviacion',
             'referencia.min' => 'El nombre de la abreviacion  debe contener más de 1 caracteres',
