@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Models\Encargado;
 use App\Models\Ingreso;
 use App\User;
 
@@ -26,9 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $ingresoTotal = Ingreso::count();
-        $empresaTotal = Empresa::count();
+        $empresaTotal = Encargado::count();
         $ingresoPendiente = Ingreso::where('estado', '=', 'Produccion')->count();
         $empleadosTotal = User::count();
-        return view('dashboard',compact('ingresoTotal', 'empresaTotal', 'ingresoPendiente', 'empleadosTotal'));
+        return view('dashboard', compact('ingresoTotal', 'empresaTotal', 'ingresoPendiente', 'empleadosTotal'));
     }
 }

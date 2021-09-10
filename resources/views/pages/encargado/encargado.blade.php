@@ -50,15 +50,6 @@
                             <form method="POST" action="{{ url('/encargado') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="empresa_id">{{ __('Seleccionar Empresa') }}</label>
-                                    <select class="form-control" name="empresa_id" id="empresa_id">
-                                        <option value="">---SELECCIONAR---</option>
-                                        @foreach (Empresa() as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nombre_empresa }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }}</label>
                                     <input type="text" class="form-control" id="nombre_encargado" required
                                         name="nombre_encargado">
@@ -77,8 +68,8 @@
                                     <input type="text" class="form-control" id="direccion" required name="direccion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero_serial">{{ __('N° Serial:') }}</label>
-                                    <input type="text" class="form-control" id="numero_serial" required
+                                    <label for="numero_serial">{{ __('N° de Documento') }}</label>
+                                    <input type="number" class="form-control" id="numero_serial" required
                                         name="numero_serial">
                                 </div>
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
@@ -100,19 +91,17 @@
                             <table class="table table-striped" id="example">
                                 <thead>
                                     <tr class="text-center">
-                                        <th>{{ __('Nombre empresa') }}</th>
                                         <th>{{ __('Nombre encargado') }}</th>
                                         <th>{{ __('N° Contacto') }}</th>
                                         <th>{{ __('Email') }}</th>
                                         <th>{{ __('Direccion') }}</th>
-                                        <th>{{ __('N° Serial') }}</th>
+                                        <th>{{ __('N° Documento') }}</th>
                                         <th>{{ __('Evento') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (Encargado() as $item)
                                     <tr>
-                                        <td>{{ $item->empresa->nombre_empresa }}</td>
                                         <td>{{ $item->nombre_encargado }}</td>
                                         <td>{{ $item->numero_celular }}</td>
                                         <td>{{ $item->email }}</td>
@@ -142,19 +131,7 @@
                                                                 <form method="POST" action="/encargado/{{$item->id}}">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('PUT')}}
-                                                                    <div class="form-group">
-                                                                        <label
-                                                                            for="empresa_id">{{ __('Empresa donde pertenece') }}</label>
-                                                                        <select class="form-control" name="empresa_idN"
-                                                                            id="empresa_idN" disabled>
-                                                                            <option value="{{ $item->empresa_id }}">
-                                                                                {{ $item->empresa->nombre_empresa }}
-                                                                            </option>
-                                                                            <input type="hidden" name="empresa_id"
-                                                                                id="empresa_id"
-                                                                                value="{{ $item->empresa_id }}" />
-                                                                        </select>
-                                                                    </div>
+
                                                                     <div class="form-group">
                                                                         <label
                                                                             for="nombre_encargado">{{ __('Nombre completo del encargado:') }}</label>
@@ -192,7 +169,6 @@
                                                                             name="numero_serial"
                                                                             value="{{$item->numero_serial}}">
                                                                     </div>
-
                                                                     <div class="modal-footer">
                                                                         <button
                                                                             class="btn btn-primary">{{ __('Enviar') }}</button>

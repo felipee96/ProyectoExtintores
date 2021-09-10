@@ -41,14 +41,10 @@ function Unidad()
         ->join('categorias', 'subcategorias.categoria_id', '=', 'categorias.id')
         ->where('unidades_medida.estado', '=', 1)->get();
 }
-function Empresa()
-{
-    return App\Models\Empresa::select('id', 'nombre_empresa', 'nit', 'direccion', 'numero_contacto', 'created_at')
-        ->get();
-}
+
 function Encargado()
 {
-    return App\Models\Encargado::select('id', 'empresa_id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
+    return App\Models\Encargado::select('id', 'nombre_encargado', 'numero_celular', 'email', 'direccion', 'numero_serial')->get();
 }
 function Prueba()
 {

@@ -15,16 +15,12 @@ class CreateEncargadosTable extends Migration
     {
         Schema::create('encargados', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('empresa_id');
             $table->string('nombre_encargado');
             $table->bigInteger('numero_celular');
             $table->string('email');
             $table->string('direccion');
             $table->integer('numero_serial');
             $table->timestamps();
-
-            #LLaves foreneas 
-            $table->foreign('empresa_id')->references('id')->on('empresas');
         });
     }
 

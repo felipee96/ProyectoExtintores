@@ -7,7 +7,7 @@
     $(document).ready(function () {
       $(".chosen-select").chosen();
    });
-   
+
 </script>
 @section('content')
 <div class="content">
@@ -77,8 +77,6 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    <a href="{{ url('encargado') }}"
-                                        class="btn btn-success mt-1">{{__('Registrar')}}</a>
                                 </div>
                             </div>
                     </div>

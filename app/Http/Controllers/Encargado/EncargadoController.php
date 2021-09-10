@@ -19,7 +19,6 @@ class EncargadoController extends Controller
     {
         try {
             $encargado = new Encargado();
-            $encargado->empresa_id = $request->input('empresa_id');
             $encargado->nombre_encargado = $request->input('nombre_encargado');
             $encargado->numero_celular = $request->input('numero_celular');
             $encargado->email = $request->input('email');
@@ -37,7 +36,6 @@ class EncargadoController extends Controller
     {
         try {
             $encargado = Encargado::find($id);
-            $encargado->empresa_id = $request->input('empresa_id');
             $encargado->nombre_encargado = $request->input('nombre_encargado');
             $encargado->numero_celular = $request->input('numero_celular');
             $encargado->email = $request->input('email');
