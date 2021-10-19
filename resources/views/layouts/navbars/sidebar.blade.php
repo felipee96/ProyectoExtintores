@@ -98,7 +98,7 @@
             </li>
             @endcan
 
-            @can('recepcionista')
+
             <li class="nav-item {{ $activePage == 'empresa_encargado' ? ' active' : '' }}">
                 <a class="nav-link " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">business</i>
@@ -115,7 +115,7 @@
                     </a>
                 </div>
             </li>
-            @endcan
+
 
             @can('recepcionista')
             <li class="nav-item dropdown {{ $activePage == 'categoria' ? ' active' : '' }}">

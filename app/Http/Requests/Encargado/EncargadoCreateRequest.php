@@ -24,7 +24,7 @@ class EncargadoCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_encargado' => 'required|min:5',
+            'nombre_encargado' => 'required|min:5|alpha',
             'numero_celular' => 'required|min:5',
             'email' => 'required|min:5',
             'direccion' => 'required|min:5',

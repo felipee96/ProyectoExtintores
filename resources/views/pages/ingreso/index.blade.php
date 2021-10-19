@@ -38,8 +38,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="Fecha Ingreso">{{__('Fecha de ingreso')}}</label>
-                                    <input disabled type="text" class="form-control" id="fecha_recepcion"
-                                        name="fecha_recepcion" value="{{$crearId->fecha_recepcion}}">
+                                    <input type="date" class="form-control" id="fecha_recepcion" name="fecha_recepcion"
+                                        value="{{$crearId->fecha_recepcion}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Fecha Entrega">{{__('Fecha de entrega')}}</label>

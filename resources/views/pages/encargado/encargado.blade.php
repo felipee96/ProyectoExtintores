@@ -30,15 +30,6 @@
                         </button>
                     </div>
                     @endif
-                    @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger" role="alert">
-                            <li>{{ $error }}</li>
-                        </div>
-                        @endforeach
-                    </ul>
-                    @endif
                     <div class="card">
                         <div class="card-header card-header-text card-header-warning">
                             <div class="card-text">
@@ -50,7 +41,8 @@
                             <form method="POST" action="{{ url('/encargado') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }}</label>
+                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }}
+                                    </label>
                                     <input type="text" class="form-control" id="nombre_encargado" required
                                         name="nombre_encargado">
                                 </div>

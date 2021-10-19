@@ -82,9 +82,10 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="abreviacion_actividad">{{ __('abreviacion_actividad') }}</label>
+                                                                        for="abreviacion_actividad">{{ __('abreviación_actividad') }}</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="abreviacion_actividad" required name="abreviacion_actividad"
+                                                                        id="abreviacion_actividad" required
+                                                                        name="abreviacion_actividad"
                                                                         value="{{ $item->abreviacion_actividad }}">
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -137,8 +138,9 @@
                                     name="nombre_actividad">
                             </div>
                             <div class="form-group">
-                                <label for="abreviacion_actividad">{{ __('Abreviacion') }}</label>
-                                <input type="text" class="form-control" id="abreviacion_actividad" required name="abreviacion_actividad">
+                                <label for="abreviacion_actividad">{{ __('Abreviación') }}</label>
+                                <input type="text" class="form-control" id="abreviacion_actividad" required
+                                    name="abreviacion_actividad">
                             </div>
                             <button class="btn btn-warning">{{ __('Enviar') }}</button>
                         </form>
