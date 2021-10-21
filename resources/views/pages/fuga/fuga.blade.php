@@ -6,9 +6,27 @@
             <div class="col-ms-12">
                 <div class="container">
                     @if (session('exito'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('exito') }}
+                    {{-- <div class="alert alert-success" role="alert">
+                        {{ session('exito') }}
+                    </div> --}}
+                    <script>
+                        window.alert('{{ session('exito') }}');
+                    </script>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                    @endif
+                    @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            <li>{{ $error }}</li>
                         </div>
+                        @endforeach
+                    </ul>
+                    @endif
                     @endif
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
@@ -133,12 +151,12 @@
                             <form method="POST" action="{{ url('/fuga') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="nombre_fuga">{{ __('Nombre Fuga') }}</label>
+                                    <label for="nombre_fuga">{{ __('Nombre Fuga') }} <span style="color: red">*</span></label>
                                     <input type="text" class="form-control" id="nombre_fuga" required
                                         name="nombre_fuga">
                                 </div>
                                 <div class="form-group">
-                                    <label for="abreviacion_fuga">{{ __('Abreviacion') }}</label>
+                                    <label for="abreviacion_fuga">{{ __('Abreviacion') }} <span style="color: red">*</span></label>
                                     <input type="text" class="form-control" id="abreviacion_fuga" required
                                         name="abreviacion_fuga">
                                 </div>

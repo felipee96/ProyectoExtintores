@@ -15,9 +15,12 @@
         <div class="col">
             <div class="container">
                 @if (session('exito'))
-                <div class="alert alert-success" role="alert">
+               {{-- <div class="alert alert-success" role="alert">
                     {{ session('exito') }}
-                </div>
+                </div> --}}
+                <script>
+                    window.alert('{{ session('exito') }}');
+                </script>
                 @endif
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
@@ -37,24 +40,24 @@
                             {{ method_field('PUT')}}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="Fecha Ingreso">{{__('Fecha de ingreso')}}</label>
+                                    <label for="Fecha Ingreso">{{__('Fecha de ingreso')}} <span style="color: red">*</span></label>
                                     <input type="date" class="form-control" id="fecha_recepcion" name="fecha_recepcion"
                                         value="{{$crearId->fecha_recepcion}}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="Fecha Entrega">{{__('Fecha de entrega')}}</label>
+                                    <label for="Fecha Entrega">{{__('Fecha de entrega')}} <span style="color: red">*</span></label>
                                     <input required type="date" class="form-control" id="fecha_entrega"
                                         name="fecha_entrega">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="Numero Referencia">{{__('Numero de referencia')}}</label>
+                                    <label for="Numero Referencia">{{__('Numero de referencia')}} <span style="color: red">*</span></label>
                                     <input disabled required type="text" class="form-control" id="numero_referencia"
                                         name="numero_referencia" value="{{$crearId->id}}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="Usuario">{{__('Colaborador A&S')}}</label>
+                                    <label for="Usuario">{{__('Colaborador A&S')}} <span style="color: red">*</span></label>
                                     <input disabled required type="text" class="form-control" id="usuario_id"
                                         name="usuario_id" value="{{Auth::user()->nombre}} {{Auth::user()->apellido}}">
                                 </div>
@@ -62,12 +65,12 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6" style="margin-top: 44px">
-                                    <label for="Numero">{{__('Numero extintores')}}</label>
+                                    <label for="Numero">{{__('Numero extintores')}} <span style="color: red">*</span></label>
                                     <input required type="number" class="form-control" id="numero_total_extintor"
                                         name="numero_total_extintor" placeholder="Ej: ###">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="encargado">{{__('Cliente')}}</label>
+                                    <label for="encargado">{{__('Cliente')}} <span style="color: red">*</span></label>
                                     <select required id="encargado_id" name="encargado_id"
                                         class=" form-control chosen-select">
                                         <option value="">Seleccionar</option>

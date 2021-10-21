@@ -41,28 +41,28 @@
                             <form method="POST" action="{{ url('/encargado') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }}
+                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }} <span style="color: red">*</span>
                                     </label>
                                     <input type="text" class="form-control" id="nombre_encargado" required
-                                        name="nombre_encargado">
+                                        name="nombre_encargado" onkeypress="return soloLetras(event)" style="text-transform:uppercase;">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero_celular">{{ __('N° de contacto:') }}</label>
+                                    <label for="numero_celular">{{ __('N° de contacto:') }} <span style="color: red">*</span></label>
                                     <input type="number" class="form-control" id="numero_celular" required
                                         name="numero_celular">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">{{ __('Email:') }}</label>
+                                    <label for="email">{{ __('Email:') }} <span style="color: red">*</span></label>
                                     <input type="email" class="form-control" id="email" required name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="direccion">{{ __('Dirección:') }}</label>
+                                    <label for="direccion">{{ __('Dirección:') }} <span style="color: red">*</span></label>
                                     <input type="text" class="form-control" id="direccion" required name="direccion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero_serial">{{ __('N° de Documento') }}</label>
+                                    <label for="numero_serial">{{ __('N° de Documento') }} <span style="color: red">*</span></label>
                                     <input type="number" class="form-control" id="numero_serial" required
-                                        name="numero_serial">
+                                        name="numero_serial" onkeypress="return soloNum(event)">
                                 </div>
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
                             </form>
@@ -70,6 +70,45 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function soloLetras(e) {
+                  var key = e.keyCode || e.which,
+                    tecla = String.fromCharCode(key).toLowerCase(),
+                    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+                    especiales = [8, 37, 39, 46],
+                    tecla_especial = false;
+
+                  for (var i in especiales) {
+                    if (key == especiales[i]) {
+                      tecla_especial = true;
+                      break;
+                    }
+                  }
+
+                  if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                    return false;
+                  }
+                }
+
+                function soloNum(e) {
+                  var key = e.keyCode || e.which,
+                    tecla = String.fromCharCode(key).toLowerCase(),
+                    letras = "1234567890",
+                    especiales = [8, 37, 39, 46],
+                    tecla_especial = false;
+
+                  for (var i in especiales) {
+                    if (key == especiales[i]) {
+                      tecla_especial = true;
+                      break;
+                    }
+                  }
+
+                  if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                    return false;
+                  }
+                }
+              </script>
 
             <div class="col-md-12">
                 <div class="container">

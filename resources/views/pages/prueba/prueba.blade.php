@@ -6,9 +6,27 @@
         <div class="col-ms-12">
             <div class="container">
                 @if (session('exito'))
-                <div class="alert alert-success" role="alert">
+                {{-- <div class="alert alert-success" role="alert">
                     {{ session('exito') }}
+                </div> --}}
+                <script>
+                    window.alert('{{ session('exito') }}');
+                </script>
+                @endif
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
                 </div>
+                @endif
+                @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        <li>{{ $error }}</li>
+                    </div>
+                    @endforeach
+                </ul>
+                @endif
                 @endif
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
@@ -132,11 +150,11 @@
                         <form method="POST" action="{{ url('/prueba') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nombre_prueba">{{ __('Nombre Prueba') }}</label>
+                                <label for="nombre_prueba">{{ __('Nombre Prueba') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="nombre_prueba" required name="nombre_prueba">
                             </div>
                             <div class="form-group">
-                                <label for="abreviacion_prueba">{{ __('Abreviacion') }}</label>
+                                <label for="abreviacion_prueba">{{ __('Abreviacion') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="abreviacion_prueba" required name="abreviacion_prueba">
                             </div>
                             <button class="btn btn-warning">{{ __('Enviar') }}</button>

@@ -15,12 +15,28 @@
                     </div>
                     @endif
                     @if(session('exito'))
-                    <div class="alert alert-success" role="alert">
+                    @if (session('exito'))
+                    {{-- <div class="alert alert-success" role="alert">
                         {{ session('exito') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    </div> --}}
+                    <script>
+                        window.alert('{{ session('exito') }}');
+                    </script>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
                     </div>
+                    @endif
+                    @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            <li>{{ $error }}</li>
+                        </div>
+                        @endforeach
+                    </ul>
+                    @endif
                     @endif
                     @if(session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -168,16 +184,16 @@
                         <form method="POST" action="{{url('/subCategoria')}}">
                             {{ csrf_field()}}
                             <div class="form-group">
-                                <label for="nombre_categoria">{{__('Nombre SubCategoria')}}</label>
+                                <label for="nombre_categoria">{{__('Nombre SubCategoria')}} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="nombre_subCategoria" required
-                                    name="nombre_subCategoria">
+                                    name="nombre_subCategoria" style="text-transform:uppercase;">
                             </div>
                             <div class="form-group">
-                                <label for="nombre_categoria">{{__('Nombre Abreviación')}}</label>
-                                <input type="text" class="form-control" id="abreviacion" required name="abreviacion">
+                                <label for="nombre_categoria">{{__('Nombre Abreviación')}} <span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="abreviacion" required name="abreviacion" style="text-transform:uppercase;">
                             </div>
                             <div class="form-group">
-                                <label for="categoria_id">{{ __('Seleccionar Categoria') }}</label>
+                                <label for="categoria_id">{{ __('Seleccionar Categoria') }} <span style="color: red">*</span></label>
                                 <select class="form-control" name="categoria_id" id="categoria_id">
                                     <option value="">---SELECCIONAR---</option>
                                     @foreach (CategoriaActiva() as $item)

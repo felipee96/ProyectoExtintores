@@ -16,17 +16,17 @@
                         <form method="POST" action="{{ url('/unidad') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="unidad_medida">{{ __('Nombre Unidad de medida') }}</label>
+                                <label for="unidad_medida">{{ __('Nombre Unidad de medida') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="unidad_medida" required
                                     name="unidad_medida">
                             </div>
                             <div class="form-group">
-                                <label for="cantidad_medida">{{ __('Cantidad') }}</label>
+                                <label for="cantidad_medida">{{ __('Cantidad') }} <span style="color: red">*</span></label>
                                 <input type="number" step="0.01" class="form-control" id="cantidad_medida" required
                                     name="cantidad_medida">
                             </div>
                             <div class="form-group">
-                                <label for="categoria_id">{{ __('Seleccionar SubCategoria') }}</label>
+                                <label for="categoria_id">{{ __('Seleccionar SubCategoria') }} <span style="color: red">*</span></label>
                                 <select class="form-control" name="sub_categoria_id" id="sub_categoria_id">
                                     <option value="">---SELECCIONAR---</option>
                                     @foreach (SubCategoriaActiva() as $item)
@@ -46,9 +46,12 @@
         <div class="col-ms-12">
             <div class="container">
                 @if (session('exito'))
-                <div class="alert alert-success" role="alert">
+                {{-- <div class="alert alert-success" role="alert">
                     {{ session('exito') }}
-                </div>
+                </div> --}}
+                <script>
+                    window.alert('{{ session('exito') }}');
+                </script>
                 @endif
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
@@ -174,3 +177,5 @@
     </div>
 </div>
 @endsection
+
+

@@ -6,9 +6,27 @@
         <div class="col-ms-12">
             <div class="container">
                 @if (session('exito'))
-                <div class="alert alert-success" role="alert">
+                {{-- <div class="alert alert-success" role="alert">
                     {{ session('exito') }}
+                </div> --}}
+                <script>
+                    window.alert('{{ session('exito') }}');
+                </script>
+                @endif
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
                 </div>
+                @endif
+                @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        <li>{{ $error }}</li>
+                    </div>
+                    @endforeach
+                </ul>
+                @endif
                 @endif
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
@@ -125,7 +143,7 @@
                 <div class="card">
                     <div class="card-header card-header-text card-header-warning">
                         <div class="card-text">
-                            <h4 class="card-title">{{ __('Registrar actividad') }}</h4>
+                            <h4 class="card-title">{{ __('Registrar Actividad') }}</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -133,12 +151,12 @@
                         <form method="POST" action="{{ url('/actividad') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nombre_actividad">{{ __('Nombre actividad') }}</label>
+                                <label for="nombre_actividad">{{ __('Nombre actividad') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="nombre_actividad" required
                                     name="nombre_actividad">
                             </div>
                             <div class="form-group">
-                                <label for="abreviacion_actividad">{{ __('Abreviación') }}</label>
+                                <label for="abreviacion_actividad">{{ __('Abreviación') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="abreviacion_actividad" required
                                     name="abreviacion_actividad">
                             </div>

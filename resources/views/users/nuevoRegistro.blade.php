@@ -15,12 +15,12 @@
                     </div>
                     @endif
                     @if (session('exito'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('exito') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                         {{-- <div class="alert alert-success" role="alert">
+                            {{ session('exito') }}
+                         </div> --}}
+                        <script>
+                            window.alert('{{ session('exito') }}');
+                         </script>
                     @endif
                     @if (session('error'))
                     <div class="alert alert-danger" role="alert">

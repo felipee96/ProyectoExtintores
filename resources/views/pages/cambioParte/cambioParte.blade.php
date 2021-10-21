@@ -6,9 +6,27 @@
         <div class="col-ms-12">
             <div class="container">
                 @if (session('exito'))
-                <div class="alert alert-success" role="alert">
+                {{-- <div class="alert alert-success" role="alert">
                     {{ session('exito') }}
+                </div> --}}
+                <script>
+                    window.alert('{{ session('exito') }}');
+                </script>
+                @endif
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
                 </div>
+                @endif
+                @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        <li>{{ $error }}</li>
+                    </div>
+                    @endforeach
+                </ul>
+                @endif
                 @endif
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
@@ -132,11 +150,11 @@
                         <form method="POST" action="{{ url('/cambio') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nombre_parte_cambio">{{ __('Nombre cambio de la parte') }}</label>
+                                <label for="nombre_parte_cambio">{{ __('Nombre cambio de la parte') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="nombre_parte_cambio" required name="nombre_parte_cambio">
                             </div>
                             <div class="form-group">
-                                <label for="referencia">{{ __('Referencia') }}</label>
+                                <label for="referencia">{{ __('Referencia') }} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="referencia" required
                                     name="referencia">
                             </div>

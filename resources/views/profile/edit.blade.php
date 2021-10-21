@@ -117,7 +117,7 @@
               </div>
               @endif
               <div class="row">
-                <label class="col-sm-2 col-form-label" for="input-current-password">{{ __('Contraseña actual:') }}</label>
+                <label class="col-sm-2 col-form-label" for="input-current-password">{{ __('Contraseña actual:') }} <span style="color: red">*</span></label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" input
@@ -131,7 +131,7 @@
                 </div>
               </div>
               <div class="row">
-                <label class="col-sm-2 col-form-label" for="input-password">{{ __('Nueva contraseña:') }}</label>
+                <label class="col-sm-2 col-form-label" for="input-password">{{ __('Nueva contraseña:') }} <span style="color: red">*</span></label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
@@ -145,7 +145,7 @@
               </div>
               <div class="row">
                 <label class="col-sm-2 col-form-label"
-                  for="input-password-confirmation">{{ __('Confirme nueva contraseña:') }}</label>
+                  for="input-password-confirmation">{{ __('Confirme nueva contraseña:') }} <span style="color: red">*</span></label>
                 <div class="col-sm-7">
                   <div class="form-group">
                     <input class="form-control" name="password_confirmation" id="input-password-confirmation"
@@ -158,7 +158,7 @@
               <button type="submit" class="btn btn-primary">{{ __('Cambiar contraseña') }}</button>
             </div>
           </div>
-        </form> 
+        </form>
       </div>
     </div>
   </div>

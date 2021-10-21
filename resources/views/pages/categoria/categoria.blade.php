@@ -12,9 +12,28 @@
                     </div>
                     @endif
                     @if(session('exito'))
-                    <div class="alert alert-success" role="alert">
+                    @if (session('exito'))
+                    {{-- <div class="alert alert-success" role="alert">
                         {{ session('exito') }}
+                    </div> --}}
+                    <script>
+                        window.alert('{{ session('exito') }}');
+                    </script>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
                     </div>
+                    @endif
+                    @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            <li>{{ $error }}</li>
+                        </div>
+                        @endforeach
+                    </ul>
+                    @endif
                     @endif
                     @if(session('error'))
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -138,9 +157,9 @@
                         <form method="POST" action="{{url('/categoria')}}">
                             {{ csrf_field()}}
                             <div class="form-group">
-                                <label for="nombre_categoria">{{__('Nombre categoria')}}</label>
+                                <label for="nombre_categoria">{{__('Nombre categoria')}} <span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="nombre_categoria" required
-                                    name="nombre_categoria">
+                                    name="nombre_categoria" style="text-transform:uppercase;">
                             </div>
                             <button class="btn btn-warning">{{__('Enviar')}}</button>
                         </form>
