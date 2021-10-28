@@ -41,13 +41,16 @@
                             <form method="POST" action="{{ url('/encargado') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }} <span style="color: red">*</span>
+                                    <label for="nombre_encargado">{{ __('Nombre completo del Clientes:') }} <span
+                                            style="color: red">*</span>
                                     </label>
                                     <input type="text" class="form-control" id="nombre_encargado" required
-                                        name="nombre_encargado" onkeypress="return soloLetras(event)" style="text-transform:uppercase;">
+                                        name="nombre_encargado" onkeypress="return soloLetras(event)"
+                                        style="text-transform:uppercase;">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero_celular">{{ __('N° de contacto:') }} <span style="color: red">*</span></label>
+                                    <label for="numero_celular">{{ __('N° de contacto:') }} <span
+                                            style="color: red">*</span></label>
                                     <input type="number" class="form-control" id="numero_celular" required
                                         name="numero_celular">
                                 </div>
@@ -56,11 +59,13 @@
                                     <input type="email" class="form-control" id="email" required name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="direccion">{{ __('Dirección:') }} <span style="color: red">*</span></label>
+                                    <label for="direccion">{{ __('Dirección:') }} <span
+                                            style="color: red">*</span></label>
                                     <input type="text" class="form-control" id="direccion" required name="direccion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="numero_serial">{{ __('N° de Documento') }} <span style="color: red">*</span></label>
+                                    <label for="numero_serial">{{ __('N° de Documento') }} <span
+                                            style="color: red">*</span></label>
                                     <input type="number" class="form-control" id="numero_serial" required
                                         name="numero_serial" onkeypress="return soloNum(event)">
                                 </div>
@@ -108,7 +113,7 @@
                     return false;
                   }
                 }
-              </script>
+            </script>
 
             <div class="col-md-12">
                 <div class="container">
@@ -164,16 +169,16 @@
                                                                     {{ method_field('PUT')}}
 
                                                                     <div class="form-group">
-                                                                        <label
-                                                                            for="nombre_encargado">{{ __('Nombre completo del encargado:') }}</label>
+                                                                        <label for="nombre_encargado">{{ __('Nombre
+                                                                            completo del encargado:') }}</label>
                                                                         <input type="text" class="form-control"
                                                                             id="nombre_encargado" required
                                                                             name="nombre_encargado"
                                                                             value="{{$item->nombre_encargado}}">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label
-                                                                            for="numero_celular">{{ __('N° de contacto:') }}</label>
+                                                                        <label for="numero_celular">{{ __('N° de
+                                                                            contacto:') }}</label>
                                                                         <input type="number" class="form-control"
                                                                             id="numero_celular" required
                                                                             name="numero_celular"
@@ -186,23 +191,23 @@
                                                                             value="{{$item->email}}">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label
-                                                                            for="direccion">{{ __('Dirección:') }}</label>
+                                                                        <label for="direccion">{{ __('Dirección:')
+                                                                            }}</label>
                                                                         <input type="text" class="form-control"
                                                                             id="direccion" required name="direccion"
                                                                             value="{{$item->direccion}}">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label
-                                                                            for="numero_serial">{{ __('N° Serial:') }}</label>
+                                                                        <label for="numero_serial">{{ __('N°
+                                                                            Documento:') }}</label>
                                                                         <input type="text" class="form-control"
                                                                             id="numero_serial" required
                                                                             name="numero_serial"
                                                                             value="{{$item->numero_serial}}">
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button
-                                                                            class="btn btn-primary">{{ __('Enviar') }}</button>
+                                                                        <button class="btn btn-primary">{{ __('Enviar')
+                                                                            }}</button>
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
                                                                     </div>
