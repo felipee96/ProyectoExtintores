@@ -15,7 +15,7 @@ class EncargadoController extends Controller
     {
         return view('pages.encargado.encargado');
     }
-    public function store(EncargadoCreateRequest $request)
+    public function store(Request $request)
     {
         try {
             $encargado = new Encargado();
@@ -32,7 +32,7 @@ class EncargadoController extends Controller
         }
     }
 
-    public function update(EncargadoCreateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $encargado = Encargado::find($id);
@@ -49,10 +49,10 @@ class EncargadoController extends Controller
     }
     public function destroy($id)
     {
-
         try {
             $delectEncargado = Encargado::findOrFail($id);
             $delectEncargado->delete();
+            return $delectEncargado;
             return back()->with('error', 'Se elimino el registro correctamente');
         } catch (Exception $a) {
             return back()->with('errors', 'No se puedo eliminar este registro');
@@ -60,7 +60,6 @@ class EncargadoController extends Controller
     }
     public function getClient(Request $request)
     {
-        return $request;
         if ($request->get('query')) {
             $query = $request->get('query');
             $data = DB::table('encargados')
