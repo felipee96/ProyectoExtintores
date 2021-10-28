@@ -11,7 +11,7 @@
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="content">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-    
+
                                 <form method="POST" action="{{ url('/listadoIngreso') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
@@ -95,14 +95,17 @@
                                             {{ method_field('PUT')}}
                                             <div class="col">
                                                 <h3 class="mt-2">{{__('Numero total de extintores')}} <input type="number" name="numero_total_extintor" id="numero_total_extintor" value="{{$total}}"></h3>
-                                            
+
                                             </div>
                                          </form>
-                                        
+
                                         <div class="col">
-                                            
+
+                                            <a href="{{ url('ticket/' . $id) }}"><button id="imprimir" class="btn btn-secondary"
+                                                style="margin-left: 30%">{{ __('Imprimir') }}</button></a>
+
                                                 <a href="{{ url('listIngreso/'.$id) }}"><button id="enviar" class="btn btn-danger"
-                                                        style="float: right">{{ __('Listado ingreso') }}</button></a>    
+                                                        style="float: right">{{ __('Listado ingreso') }}</button></a>
                                         </div>
                                      </div>
                                     </div>
