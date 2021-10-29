@@ -7,9 +7,43 @@ use App\Models\Ingreso;
 use App\Models\NumeroTiquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike24\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\compaj;
 
 class IngresoController extends Controller
 {
+    public function ticket($id_referencia){
+
+        $ingreso = Ingreso::where('numero_referencia', $id_referencia)
+        ->with('Usuario','Encargado')
+        ->first();
+
+
+        $nombreImpresora = ("SAT22TUS");
+        $connector = new WindowsPrintConnector($nombreImpresora);
+        $impresora = new Printer($connector);
+        $impresora->setJustification(Printer::JUSTIFY_CENTER);
+        $impresora->setEmphasis(true);
+        $impresora->setTextSize(2, 2);
+        $impresora->text("A & S\n");
+        $impresora->setTextSize(1, 1);
+        $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
+        $impresora->text("Fecha de Ingreso: ");
+        $impresora->text($ingreso->fecha_recepcion ."\n");
+        $impresora->text("Cliente: ");
+        $impresora->text(($ingreso->encargado->nombre_encargado) . "\n");
+        $impresora->text("Numero de referencia: ");
+        $impresora->text($ingreso->id . "\n");
+        $impresora->text("Colaborador: ");
+        $impresora->text(($ingreso->usuario->nombre ." ". $ingreso->usuario->apellido) . "\n");
+        $impresora->cut();
+        $impresora->close();
+
+        return redirect()->back()->with("mensaje", "Ticket impreso");
+
+    }
     public function getIngreso($id_vendedor)
     {
         /** Validamos si encuentra un ingreso con el id del usuario y en estado de recibido si exite que nos lo muestre

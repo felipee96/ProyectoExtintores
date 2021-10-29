@@ -105,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ingresoL/{id}', 'Ingreso\IngresoController@listadoIngreso')->where('id', '[0-9]+');
     Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
     Route::get('imprimirPdf/{id}', 'Ingreso\IngresoController@imprimirTiquete')->where('id', '[0-9]+');
+    Route::get('ticket/{idReferencia}', 'Ingreso\IngresoController@ticket')->where('idReferencia', '[0-9]+');
 
     #ListadoIngreso
     Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
@@ -114,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
     Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
     Route::delete('ingresoListado/{id}', 'ListadoIngreso\ListadoIngresoController@eliminarIngresoListado')->where('id', '[0-9]+');
+
 
     #Ruta para combo dinamico Subcategoria
     Route::get('ingresoL/comboSubcategoria/{id}', 'ListadoIngreso\ListadoIngresoController@byCategoria');
