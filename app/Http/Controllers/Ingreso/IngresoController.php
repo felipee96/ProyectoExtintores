@@ -11,6 +11,7 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike24\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\compaj;
+use Mike42\Escpos\EscposImage;
 
 class IngresoController extends Controller
 {
@@ -24,12 +25,19 @@ class IngresoController extends Controller
         $nombreImpresora = ("SAT22TUS");
         $connector = new WindowsPrintConnector($nombreImpresora);
         $impresora = new Printer($connector);
+
+
+
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
+        $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
+
+        $impresora->bitImage($logo);
         $impresora->setEmphasis(true);
-        $impresora->setTextSize(2, 2);
+        $impresora->setTextSize(3, 3);
         $impresora->text("A & S\n");
-        $impresora->setTextSize(1, 1);
+        $impresora->setTextSize(2, 2);
         $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
+        $impresora->setTextSize(1, 1);
         $impresora->text("Fecha de Ingreso: ");
         $impresora->text($ingreso->fecha_recepcion ."\n");
         $impresora->text("Cliente: ");
@@ -38,6 +46,7 @@ class IngresoController extends Controller
         $impresora->text($ingreso->id . "\n");
         $impresora->text("Colaborador: ");
         $impresora->text(($ingreso->usuario->nombre ." ". $ingreso->usuario->apellido) . "\n");
+        $impresora->feed(3);
         $impresora->cut();
         $impresora->close();
 
