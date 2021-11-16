@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-header card-header-text card-header-warning">
                         <div class="card-text">
-                            <h4 class="card-title">{{ __('Ver  ingreso') }}</h4>
+                            <h4 class="card-title">{{ __('Ver ingreso') }}</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -56,17 +56,17 @@
                                                 <i class="material-icons">print</i>
                                             </button></a>
 
-                                        {{-- <a href="{{ url('listIngreso/'.$item->numero_referencia) }}"><button
-                                            type="submit" class="btn btn-warning btn-fab btn-fab-mini btn-round">
-                                            <i class="material-icons">assignment</i>
-                                        </button></a> --}}
+                                        <a href="{{ url('export/'.$item->numero_referencia) }}"><button type="submit"
+                                                class="btn btn-info btn-fab btn-fab-mini btn-round">
+                                                <i class="material-icons">assignment</i>
+                                            </button></a>
 
                                         <!-- Modal -->
                                         <div class="modal" tabindex="-1" role="dialog" id="editar{{ $item->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Editar ingreso</h5>
+                                                        <h5 class="modal-title">{{__('Editar ingreso')}}</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -79,15 +79,15 @@
                                                             {{ method_field('PUT')}}
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label
-                                                                        for="Fecha Ingreso">{{__('Fecha de ingreso')}}</label>
+                                                                    <label for="Fecha Ingreso">{{__('Fecha de
+                                                                        ingreso')}}</label>
                                                                     <input disabled type="text" class="form-control"
                                                                         id="fecha_recepcion" name="fecha_recepcion"
                                                                         value="{{$item->fecha_recepcion}}">
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label
-                                                                        for="Fecha Entrega">{{__('Fecha de entrega')}}</label>
+                                                                    <label for="Fecha Entrega">{{__('Fecha de
+                                                                        entrega')}}</label>
                                                                     <input required type="date" class="form-control"
                                                                         id="fecha_entrega" name="fecha_entrega"
                                                                         value="{{$item->fecha_entrega}}">
@@ -95,15 +95,15 @@
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label
-                                                                        for="Numero Referencia">{{__('Numero de referencia')}}</label>
+                                                                    <label for="Numero Referencia">{{__('Numero de
+                                                                        referencia')}}</label>
                                                                     <input disabled required type="text"
                                                                         class="form-control" id="numero_referencia"
                                                                         name="numero_referencia" value="{{$item->id}}">
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label
-                                                                        for="Usuario">{{__('Colaborador A&S')}}</label>
+                                                                    <label for="Usuario">{{__('Colaborador
+                                                                        A&S')}}</label>
                                                                     <input disabled required type="text"
                                                                         class="form-control" id="usuario_id"
                                                                         name="usuario_id"
@@ -114,8 +114,8 @@
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6"
                                                                     style="margin-top: 44px">
-                                                                    <label
-                                                                        for="Numero">{{__('Numero exintores')}}</label>
+                                                                    <label for="Numero">{{__('Numero
+                                                                        exintores')}}</label>
                                                                     <input disabled required type="number"
                                                                         class="form-control"
                                                                         name="numero_total_extintor"

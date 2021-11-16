@@ -21,14 +21,14 @@ class ListadoIngresoController extends Controller
     {
         $data = SubCategoria::select('id', 'nombre_subCategoria')->where('categoria_id', '=', $id)
             ->where('estado', '=', 1)->get();
-        //traer las subcategorias que pertenezcan a esa categoria 
+        //traer las subcategorias que pertenezcan a esa categoria
         //return Subcategoria::where('categoria_id', $id)->get();
         return response()->json($data);
     }
 
     public function bySubcategoria($id)
     {
-        //traer las unidades de medida que pertenezcan a esa subcategoria 
+        //traer las unidades de medida que pertenezcan a esa subcategoria
         return UnidadMedida::where('sub_categoria_id', $id)->get();
     }
 
@@ -58,9 +58,7 @@ class ListadoIngresoController extends Controller
 
         try {
             $numeroReferencia = $id;
-            $listIngreso = ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad')
-                ->where('ingreso_id', $id)
-                ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')->get();
+            $listIngreso = $this->obtenerListadoIngreso($id);
             if ($listIngreso) {
                 return view('pages.listadoIngreso.verListadoIngreso', compact('numeroReferencia', 'listIngreso'));
             } else {
@@ -69,6 +67,24 @@ class ListadoIngresoController extends Controller
         } catch (\Throwable $th) {
             return back('error', 'No se encuentrar disponible en estos momentos');
         }
+    }
+    public function exportarListadoIngreso($idIngreso)
+    {
+        $data = Ingreso::where('id', $idIngreso)->with(
+            'Listado_Ingreso',
+            'Listado_Ingreso.UnidadMedida.SubCategoria.Categoria',
+            'Listado_Ingreso.ActividadIngreso',
+            'Usuario',
+            'Encargado'
+        )->get();
+        return $data;
+        // return $this->obtenerListadoIngreso($idIngreso);
+    }
+    private function obtenerListadoIngreso($idIngreso)
+    {
+        return  ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad')
+            ->where('ingreso_id', $idIngreso)
+            ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')->get();
     }
     public function update(ListadoIngresoCreate $request, $id)
     {

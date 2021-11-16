@@ -17,6 +17,10 @@ class Actividad extends Model
     public function IngresoActividad()
     {
         //RELACION CON LA TABLA INGRESO
-        return $this->belongsTo(Ingreso::class, 'actividad_id','id');
+        return $this->belongsTo(Ingreso::class, 'actividad_id', 'id');
+    }
+    public  function ListadoIngresoActividad()
+    {
+        return $this->belongsTo(ListadoIngreso::class, 'actividad_id', 'id');
     }
 }

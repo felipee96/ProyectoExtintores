@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
     Route::get('verListado', 'ListadoIngreso\ListadoIngresoController@verListado');
     Route::get('listIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@ListadoIngreso')->where('id', '[0-9]+');
+
     Route::post('listadoIngreso', 'ListadoIngreso\ListadoIngresoController@store');
     Route::put('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@update')->where('id', '[0-9]+');
     Route::delete('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@destroy')->where('id', '[0-9]+');
@@ -152,4 +153,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 //PDF
 Route::name('print')->get('/imprimir', 'GeneradorController@imprimir');
-//Ruta empresa
+
+Route::get('export/{id}', 'ListadoIngreso\ListadoIngresoController@exportarListadoIngreso')->where('id', '[0-9]+');
