@@ -12,9 +12,11 @@ use Mike24\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\compaj;
 use Mike42\Escpos\EscposImage;
+use App\Http\Controllers\Utilities\ImprimirTicket;
 
 class IngresoController extends Controller
 {
+    use ImprimirTicket;
     public function ticket($id_referencia){
 
         $ingreso = Ingreso::where('numero_referencia', $id_referencia)
@@ -22,7 +24,7 @@ class IngresoController extends Controller
         ->first();
 
 
-        $nombreImpresora = ("SAT22TUS");
+        $nombreImpresora = ("SAT 22TUS");
         $connector = new WindowsPrintConnector($nombreImpresora);
         $impresora = new Printer($connector);
 
@@ -30,7 +32,7 @@ class IngresoController extends Controller
 
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
         $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
-
+        $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
         $impresora->bitImage($logo);
         $impresora->setEmphasis(true);
         $impresora->setTextSize(3, 3);
@@ -46,6 +48,9 @@ class IngresoController extends Controller
         $impresora->text($ingreso->id . "\n");
         $impresora->text("Colaborador: ");
         $impresora->text(($ingreso->usuario->nombre ." ". $ingreso->usuario->apellido) . "\n");
+        $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
+        $impresora->setJustification(Printer::JUSTIFY_CENTER);
+        $impresora->bitImage($logo);
         $impresora->feed(3);
         $impresora->cut();
         $impresora->close();
@@ -131,6 +136,7 @@ class IngresoController extends Controller
     }
     public function cambioEstado($id)
     {
+
         try {
             $numeroEtiqueta = NumeroTiquete::all()->last();
 
@@ -144,6 +150,7 @@ class IngresoController extends Controller
             if ($actingreso) {
                 $actingreso->estado = 'Produccion';
                 $actingreso->save();
+                $this->ticket($id_referencia);
                 return redirect('listIngreso');
             } else {
                 return back();

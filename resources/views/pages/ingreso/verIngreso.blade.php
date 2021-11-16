@@ -51,10 +51,10 @@
                                             data-toggle="modal" data-target="#editar{{ $item->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <a href="{{ url('imprimirPdf/'.$item->numero_referencia) }}"><button
+                                        {{-- <a href="{{ url('imprimirPdf/'.$item->numero_referencia) }}"><button
                                                 type="submit" class="btn btn-warning btn-fab btn-fab-mini btn-round">
                                                 <i class="material-icons">print</i>
-                                            </button></a>
+                                            </button></a> --}}
 
                                         <a href="{{ url('export/'.$item->numero_referencia) }}"><button type="submit"
                                                 class="btn btn-info btn-fab btn-fab-mini btn-round">
