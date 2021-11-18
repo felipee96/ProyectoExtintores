@@ -17,11 +17,12 @@ use App\Http\Controllers\Utilities\ImprimirTicket;
 class IngresoController extends Controller
 {
     use ImprimirTicket;
-    public function ticket($id_referencia){
+    public function ticket($id_referencia)
+    {
 
         $ingreso = Ingreso::where('numero_referencia', $id_referencia)
-        ->with('Usuario','Encargado')
-        ->first();
+            ->with('Usuario', 'Encargado')
+            ->first();
 
 
         $nombreImpresora = ("SAT 22TUS");
@@ -41,13 +42,13 @@ class IngresoController extends Controller
         $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
         $impresora->setTextSize(1, 1);
         $impresora->text("Fecha de Ingreso: ");
-        $impresora->text($ingreso->fecha_recepcion ."\n");
+        $impresora->text($ingreso->fecha_recepcion . "\n");
         $impresora->text("Cliente: ");
         $impresora->text(($ingreso->encargado->nombre_encargado) . "\n");
         $impresora->text("Numero de referencia: ");
         $impresora->text($ingreso->id . "\n");
         $impresora->text("Colaborador: ");
-        $impresora->text(($ingreso->usuario->nombre ." ". $ingreso->usuario->apellido) . "\n");
+        $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
         $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
         $impresora->bitImage($logo);
@@ -56,7 +57,6 @@ class IngresoController extends Controller
         $impresora->close();
 
         return redirect()->back()->with("mensaje", "Ticket impreso");
-
     }
     public function getIngreso($id_vendedor)
     {
@@ -77,6 +77,19 @@ class IngresoController extends Controller
 
         return $ingreso;
     }
+    public function listadoPorIngreso($idIngreso)
+    {
+        $data = Ingreso::where('id', $idIngreso)->with(
+            'Listado_Ingreso',
+            'Listado_Ingreso.UnidadMedida.SubCategoria.Categoria',
+            'Listado_Ingreso.ActividadIngreso',
+            'Usuario',
+            'Encargado'
+        )->get();
+        $var = json_encode($data);
+        return $var['listado_ingreso'];
+        //return view('pages.ingreso.listadoPorIngreso', compact('var'));
+    }
     public function index($id)
     {
         /** Hacemos llamado del metodo anterior llevando el respectivo ingreso */
@@ -87,8 +100,6 @@ class IngresoController extends Controller
     {
         $actingreso = Ingreso::where('numero_referencia', $id)->first();
         $total = $actingreso->numero_total_extintor;
-        // $cantidad = ListadoIngreso::where('ingreso_id',$id)->first();
-        // $total = ($actingreso->numero_total_extintor)-($cantidad->numero_extintor);
         return view('pages.listadoIngreso.listadoIngreso', compact('id', 'total'));
     }
     public function getEstadoIngreso()
@@ -150,7 +161,6 @@ class IngresoController extends Controller
             if ($actingreso) {
                 $actingreso->estado = 'Produccion';
                 $actingreso->save();
-                $this->ticket($id_referencia);
                 return redirect('listIngreso');
             } else {
                 return back();

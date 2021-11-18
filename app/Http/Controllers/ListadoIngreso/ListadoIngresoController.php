@@ -78,7 +78,6 @@ class ListadoIngresoController extends Controller
             'Encargado'
         )->get();
         return $data;
-        // return $this->obtenerListadoIngreso($idIngreso);
     }
     private function obtenerListadoIngreso($idIngreso)
     {

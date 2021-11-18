@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ingresoact/{id}', 'Ingreso\IngresoController@cambioEstado')->where('id', '[0-9]+');
     Route::get('imprimirPdf/{id}', 'Ingreso\IngresoController@imprimirTiquete')->where('id', '[0-9]+');
     Route::get('ticket/{idReferencia}', 'Ingreso\IngresoController@ticket')->where('idReferencia', '[0-9]+');
+    Route::get('listarRegistroIngreso/{id}', 'Ingreso\IngresoController@listadoPorIngreso')->where('id', '[0-9]+');
 
     #ListadoIngreso
     Route::get('listadoIngreso/{id}', 'ListadoIngreso\ListadoIngresoController@index')->name('listadoIngreso');
