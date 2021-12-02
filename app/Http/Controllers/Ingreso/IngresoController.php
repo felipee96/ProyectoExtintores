@@ -17,6 +17,16 @@ use App\Http\Controllers\Utilities\ImprimirTicket;
 class IngresoController extends Controller
 {
     use ImprimirTicket;
+
+    /* private function obtenerListadoIngreso($idIngreso)
+    {
+        return  ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad', 'unidades_medida.*')
+            ->where('ingreso_id', $idIngreso)
+            ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')
+            ->join('unidades_medida', 'listado_ingreso.unidad_medida_id', '=', 'unidades_medida.id')
+            ->get();
+    }
+ */
     public function ticket($id_referencia)
     {
 
@@ -24,6 +34,10 @@ class IngresoController extends Controller
             ->with('Usuario', 'Encargado')
             ->first();
 
+       /*  $idIngreso = 33;
+        $listIngreso = $this->obtenerListadoIngreso($idIngreso); */
+
+        //return $listIngreso;
 
         $nombreImpresora = ("SAT 22TUS");
         $connector = new WindowsPrintConnector($nombreImpresora);
@@ -32,10 +46,8 @@ class IngresoController extends Controller
 
 
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
         $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
-        $impresora->bitImage($logo);
-        $impresora->setEmphasis(true);
+       // $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
         $impresora->setTextSize(3, 3);
         $impresora->text("A & S\n");
         $impresora->setTextSize(2, 2);
@@ -50,13 +62,12 @@ class IngresoController extends Controller
         $impresora->text("Colaborador: ");
         $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
         $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $impresora->bitImage($logo);
+        //$impresora->bitImage($logo2);
         $impresora->feed(3);
         $impresora->cut();
         $impresora->close();
 
-        return redirect()->back()->with("mensaje", "Ticket impreso");
+        return redirect('listIngreso');
     }
     public function getIngreso($id_vendedor)
     {
@@ -161,7 +172,7 @@ class IngresoController extends Controller
             if ($actingreso) {
                 $actingreso->estado = 'Produccion';
                 $actingreso->save();
-                return redirect('listIngreso');
+                return $this->ticket($actingreso->id);
             } else {
                 return back();
             }

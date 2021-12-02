@@ -222,7 +222,7 @@
                                                         {{ method_field('DELETE')}}
                                                         <button type="submit"
                                                             class="btn btn-danger btn-fab btn-fab-mini btn-round mt-2"
-                                                            style=""><i class="material-icons">close</i></button>
+                                                            style=""><i class="material-icons" onclick="return confirm('Desea eliminar el registro?')">close</i></button>
                                                     </form>
                                                 </div>
                                             </div>

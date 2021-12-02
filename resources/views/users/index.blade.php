@@ -118,12 +118,12 @@
                           </div>
                         </div>
                         <div class="col-2">
-                          <form action="/usuario/{{$item->id }}" method="post">
-                            {{ csrf_field()}}
+                            <form action="/usuario/{{$item->id }}" method="post" id="formularioEliminar">
+                                {{ csrf_field()}}
                             {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-danger btn-fab btn-fab-mini btn-round mt-2" style=""><i
-                                class="material-icons">close</i></button>
-                          </form>
+                                class="material-icons" onclick="return confirm('Desea eliminar el registro?')">close</i></button>
+                            </form>
                         </div>
                       </div>
                     </td>
@@ -140,3 +140,4 @@
   </div>
 </div>
 @endsection
+

@@ -101,8 +101,8 @@
 
                                         <div class="col">
 
-                                            <a href="{{ url('ticket/' . $id) }}"><button id="imprimir" class="btn btn-secondary"
-                                                style="margin-left: 30%">{{ __('Imprimir') }}</button></a>
+                                            {{-- <a href="{{ url('ticket/' . $id) }}"><button id="imprimir" class="btn btn-secondary"
+                                                style="margin-left: 30%">{{ __('Imprimir') }}</button></a> --}}
 
                                                 <a href="{{ url('listIngreso/'.$id) }}"><button id="enviar" class="btn btn-danger"
                                                         style="float: right">{{ __('Listado ingreso') }}</button></a>
