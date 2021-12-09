@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ingreso;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ingreso;
+use App\Models\ListadoIngreso;
 use App\Models\NumeroTiquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,15 +19,7 @@ class IngresoController extends Controller
 {
     use ImprimirTicket;
 
-    /* private function obtenerListadoIngreso($idIngreso)
-    {
-        return  ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad', 'unidades_medida.*')
-            ->where('ingreso_id', $idIngreso)
-            ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')
-            ->join('unidades_medida', 'listado_ingreso.unidad_medida_id', '=', 'unidades_medida.id')
-            ->get();
-    }
- */
+
     public function ticket($id_referencia)
     {
 
@@ -34,40 +27,61 @@ class IngresoController extends Controller
             ->with('Usuario', 'Encargado')
             ->first();
 
-       /*  $idIngreso = 33;
-        $listIngreso = $this->obtenerListadoIngreso($idIngreso); */
-
-        //return $listIngreso;
-
         $nombreImpresora = ("SAT 22TUS");
         $connector = new WindowsPrintConnector($nombreImpresora);
         $impresora = new Printer($connector);
 
-
+        $data = $this->obtenerListadoIngreso($id_referencia);
+        //return $data;
 
         $impresora->setJustification(Printer::JUSTIFY_CENTER);
         $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
-       // $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
+        $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
+        $impresora->bitImage($logo2);
         $impresora->setTextSize(3, 3);
         $impresora->text("A & S\n");
         $impresora->setTextSize(2, 2);
         $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
         $impresora->setTextSize(1, 1);
+        $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
         $impresora->text("Fecha de Ingreso: ");
         $impresora->text($ingreso->fecha_recepcion . "\n");
+        $impresora->feed(2);
         $impresora->text("Cliente: ");
         $impresora->text(($ingreso->encargado->nombre_encargado) . "\n");
         $impresora->text("Numero de referencia: ");
         $impresora->text($ingreso->id . "\n");
+        $impresora->feed(1);
+
+        foreach( $data as $item){
+            $impresora->setJustification(Printer::JUSTIFY_LEFT);
+            $impresora->text("Numero de Extintores:  ");
+            $impresora->text($item->numero_extintor. "\n");
+            $impresora->text("Actividad           :  ");
+            $impresora->text($item->nombre_actividad. "\n");
+            $impresora->text("Unidad de medida    :  ");
+            $impresora->text($item->unidad_medida. "\n");
+            $impresora->text("Cantidad de Media   :  ");
+            $impresora->text($item->cantidad_medida.  "\n");
+            $impresora->text("------------------------------------------------");
+        };
+        $impresora->setJustification(Printer::JUSTIFY_CENTER);
         $impresora->text("Colaborador: ");
         $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
-        $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
-        //$impresora->bitImage($logo2);
         $impresora->feed(3);
         $impresora->cut();
         $impresora->close();
 
         return redirect('listIngreso');
+    }
+
+    private function obtenerListadoIngreso($idIngreso)
+    {
+        return  ListadoIngreso::select('listado_ingreso.id', 'listado_ingreso.unidad_medida_id', 'listado_ingreso.created_at', 'listado_ingreso.numero_extintor', 'actividades.nombre_actividad','unidades_medida.*')
+            ->where('ingreso_id', $idIngreso)
+            ->join('actividades', 'listado_ingreso.actividad_id', '=', 'actividades.id')
+            ->join('unidades_medida', 'listado_ingreso.unidad_medida_id', '=', 'unidades_medida.id')
+            ->get();
     }
     public function getIngreso($id_vendedor)
     {
