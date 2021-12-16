@@ -22,36 +22,29 @@
         <table id="example" class="table table-borderedss table-hover" style="width:100%">
             <thead class="thead-light">
                 <tr>
-                    <th># etiqueta anterior</th>
-                    <th># etiqueta nueva</th>
+                    <th># referencia</th>
                     <th>Fecha ingreso</th>
                     <th>Fecha entrega</th>
-                    <th># referencia</th>
-                    <th>Medida</th>
+                    <th>Actividad</th>
                     <th>Cantidad</th>
-                    <th>Observacion</th>
-                    <th>Evento</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($extintorHistorial as $item)
+                @foreach ($sql as $item)
                 <tr>
-                    <td>{{$item->nro_tiquete_anterior}}</td>
-                    <td>{{$item->nro_tiquete_nuevo}}</td>
+                    <td>{{$item->numero_referencia}}</td>
                     <td>{{$item->fecha_recepcion}}</td>
                     <td>{{$item->fecha_entrega}}</td>
-                    <td>{{$item->numero_referencia}}</td>
-                    <td>{{$item->unidad_medida}}</td>
-                    <td>{{$item->cantidad_medida}}</td>
-                    <td>{{$item->observacion}}</td>
-                    <td>
+                    <td>{{$item->nombre_actividad}}</td>
+                    <td>{{$item->numero_extintor}}</td>
+                    {{-- <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                             <i class="fa fa-random" aria-hidden="true"></i>
                         </button>
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#pruebas">
                             <i class="fa fa-tripadvisor" aria-hidden="true"></i>
                         </button></td>
-                </tr>
+                </tr> --}}
                 @endforeach
             </tbody>
         </table>
@@ -59,7 +52,7 @@
                 class="fa fa-reply-all" aria-hidden="true"></i> Volver</a>
     </div>
 
-    <!-- Modal cambio de partes -->
+  {{--   <!-- Modal cambio de partes -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -139,13 +132,13 @@
                         "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                         },
                         dom: 'Bfrtip',
-    
+
                         buttons: [ {
                         extend:    'excelHtml5',
     				    text:      '<i class="fa fa-file-excel-o" aria-hidden="true"></i>',
     				    titleAttr: 'Exportar a Excel',
     				    className: 'btn btn-success'
-                        
+
                         },
                         {
                         extend: 'pdf',
@@ -167,7 +160,7 @@
                         ]
                         } );
                         } );
-    </script>
+    </script> --}}
 </body>
 
 </html>

@@ -157,6 +157,7 @@ class IngresoController extends Controller
              * pertinentes
              */
             $numeroEtiqueta = NumeroTiquete::select('id', 'numero_tiquete')->get()->last();
+            return $numeroEtiqueta;
             // return [
             //     'etiquetaDisponible' => $numeroEtiqueta->numero_tiquete,
             //     'numeroExtintoresIngreso' => $numeroExtintores,

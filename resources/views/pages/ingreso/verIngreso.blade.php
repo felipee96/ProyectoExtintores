@@ -51,7 +51,7 @@
                                             data-toggle="modal" data-target="#editar{{ $item->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <a href="{{ url('listarRegistroIngreso/'.$item->numero_referencia) }}"><button
+                                        <a href="{{ url('ticket/'.$item->numero_referencia) }}"><button
                                                 type="submit" class="btn btn-info btn-fab btn-fab-mini btn-round">
                                                 <i class="material-icons">assignment</i>
                                             </button></a>
@@ -76,7 +76,7 @@
                                                                 <div class="form-group col-md-6">
                                                                     <label for="Fecha Ingreso">{{__('Fecha de
                                                                         ingreso')}}</label>
-                                                                    <input disabled type="text" class="form-control"
+                                                                    <input type="date" class="form-control"
                                                                         id="fecha_recepcion" name="fecha_recepcion"
                                                                         value="{{$item->fecha_recepcion}}">
                                                                 </div>
