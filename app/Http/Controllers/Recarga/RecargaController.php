@@ -21,6 +21,8 @@ class RecargaController extends Controller
     }
     public function setRecargaListado($id)
     {
+        $listadoRecarga = $this->listadoRecarga($id);
+
         $primerTiquete = $this->NumeroEtiqueta($id);
         $clienteS = $this->NumeroSeriaCliente($id);
         $datos = $this->InformacionIngreso($id);
@@ -30,7 +32,7 @@ class RecargaController extends Controller
             return view('pages.recarga.verListadoIngreso', compact('datos', 'id', 'clienteS', 'primerTiquete', 'advertencia'));
         }
         $primerTiquete = $primerTiquete->numero_tiquete;
-        return view('pages.recarga.verListadoIngreso', compact('datos', 'id', 'clienteS', 'primerTiquete'));
+        return view('pages.recarga.verListadoIngreso', compact('datos', 'id', 'clienteS', 'primerTiquete', 'listadoRecarga'));
     }
     public function store(Request $request)
     {
@@ -76,9 +78,10 @@ class RecargaController extends Controller
     /**Para obtener la informacion de la recargas que pertenecen a un ingreso */
     public function informacionListadoRecarga($id)
     {
+
         $listadoRecarga = $this->listadoRecarga($id);
         $listadoRecarga = json_decode($listadoRecarga, true);
         return $listadoRecarga;
-        return view('pages.recarga.listadoRecarga')->with('listadoRecarga', json_decode($listadoRecarga, true));
+        //return view('pages.recarga.listadoRecarga')->with('listadoRecarga', json_decode($listadoRecarga, true));
     }
 }

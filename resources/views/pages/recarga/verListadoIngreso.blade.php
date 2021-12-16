@@ -68,16 +68,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datos as $item)
+                                @foreach ($listadoRecarga as $item)
                                 <tr>
-                                    {{-- <td>{{$item->ingreso_id}}</td>
-                                    <td>{{$item->numero_extintor}}</td>
-                                    <td>{{$item->fecha_recepcion}}</td>
-                                    <td>{{$item->cantidad_medida}}</td>
-                                    <td>{{$item->unidad_medida}}</td>
-                                    <td>{{$item->nombre_subCategoria}}</td>
-                                    <td>{{$item->nombre_categoria}}</td>
-                                    <td>{{$item->nombre_actividad}}({{$item->abreviacion_actividad}})</td> --}}
+                                    <td>{{$item['nro_tiquete_anterior']}}</td>
+                                    <td>{{$item['nro_tiquete_nuevo']}}</td>
+                                    <td>{{$item['nro_extintor']}}</td>
+                                    <td>{{$item['cantidad_medida']}}</td>
+                                    <td>{{$item['unidad_medida']}}</td>
+                                    <td>{{$item['nombre_actividad']}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -259,8 +257,8 @@
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
 
                             </form>
-                            <a href="{{ url('infoRecarga/'.$id) }}">
-                                <button class="btn btn-primary">{{ __('Ver listado') }}</button></a>
+                                {{-- <a href="{{ url('infoRecarga/'.$id) }}">
+                                    <button class="btn btn-primary">{{ __('Ver listado') }}</button></a> --}}
                         </div>
                     </div>
                 </div>
