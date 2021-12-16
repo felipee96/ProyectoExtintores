@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card-header card-header-text card-header-warning">
                         <div class="card-text">
-                            <h4 class="card-title">{{ __('Listado De esxtintores Recargados') }}</h4>
+                            <h4 class="card-title">{{ __('Listado De extintores Recargados') }}</h4>
                         </div>
                     </div>
                     <div class="card-body table-responsive">
