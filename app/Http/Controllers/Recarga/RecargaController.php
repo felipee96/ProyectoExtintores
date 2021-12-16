@@ -21,7 +21,6 @@ class RecargaController extends Controller
     }
     public function setRecargaListado($id)
     {
-
         $primerTiquete = $this->NumeroEtiqueta($id);
         $clienteS = $this->NumeroSeriaCliente($id);
         $datos = $this->InformacionIngreso($id);
@@ -70,12 +69,10 @@ class RecargaController extends Controller
     }
     private function etiqueta($idRecarga, $numeroEtiqueta)
     {
-        $actualizarEtiqueta = NumeroTiquete::where('numero_tiquete', $numeroEtiqueta)->get();
-        $actualizarEtiqueta->ingreso_id = $idRecarga;
-        return $actualizarEtiqueta;
+        $actualizarEtiqueta = NumeroTiquete::where('numero_tiquete', $numeroEtiqueta)->first();
+        $actualizarEtiqueta->recarga_id = $idRecarga;
         $actualizarEtiqueta->update();
     }
-
     /**Para obtener la informacion de la recargas que pertenecen a un ingreso */
     public function informacionListadoRecarga($id)
     {
