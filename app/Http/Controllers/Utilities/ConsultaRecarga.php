@@ -9,9 +9,9 @@ trait ConsultaRecarga
 {
     public function NumeroEtiqueta($id)
     {
-
         return NumeroTiquete::select('numero_tiquete')
-            ->where('ingreso_id', $id)->get()->first();
+            ->where('ingreso_id', $id)
+            ->where('recarga_id', null)->get()->first();
     }
     public function NumeroSeriaCliente($id)
     {
