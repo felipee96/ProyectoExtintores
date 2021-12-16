@@ -22,57 +22,85 @@ class IngresoController extends Controller
 
     public function ticket($id_referencia)
     {
+            $numeroEtiqueta = NumeroTiquete::all()->last();
 
-        $ingreso = Ingreso::where('numero_referencia', $id_referencia)
-            ->with('Usuario', 'Encargado')
-            ->first();
+            $actingreso = Ingreso::where('id', $id_referencia)->first();
+            /**
+            * Valida la informacion y crea los nuevos tickets para el ingreso
+            */
 
-        $nombreImpresora = ("SAT 22TUS");
-        $connector = new WindowsPrintConnector($nombreImpresora);
-        $impresora = new Printer($connector);
 
-        $data = $this->obtenerListadoIngreso($id_referencia);
-        //return $data;
+            for ($i = 1; $i <= $actingreso->numero_total_extintor; $i++) {
+                $nuevaEtiqueta = new NumeroTiquete();
+                $nuevaEtiqueta->numero_tiquete = $numeroEtiqueta->numero_tiquete + $i;
+                $nuevaEtiqueta->ingreso_id = $actingreso->id;
+                $nuevaEtiqueta->save();
+            }
+            /**
+            * Cambia el estado del ingreso y guarda el registro
+            */
+            if ($actingreso) {
+                $actingreso->estado = 'Produccion';
+                $actingreso->save();
 
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
-        $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
-        $impresora->bitImage($logo2);
-        $impresora->setTextSize(3, 3);
-        $impresora->text("A & S\n");
-        $impresora->setTextSize(2, 2);
-        $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
-        $impresora->setTextSize(1, 1);
-        $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
-        $impresora->text("Fecha de Ingreso: ");
-        $impresora->text($ingreso->fecha_recepcion . "\n");
-        $impresora->feed(2);
-        $impresora->text("Cliente: ");
-        $impresora->text(($ingreso->encargado->nombre_encargado) . "\n");
-        $impresora->text("Numero de referencia: ");
-        $impresora->text($ingreso->id . "\n");
-        $impresora->feed(1);
+                /**
+                * Ingresa a imprimir la factura
+                */
 
-        foreach( $data as $item){
-            $impresora->setJustification(Printer::JUSTIFY_LEFT);
-            $impresora->text("Numero de Extintores:  ");
-            $impresora->text($item->numero_extintor. "\n");
-            $impresora->text("Actividad           :  ");
-            $impresora->text($item->nombre_actividad. "\n");
-            $impresora->text("Unidad de medida    :  ");
-            $impresora->text($item->unidad_medida. "\n");
-            $impresora->text("Cantidad de Media   :  ");
-            $impresora->text($item->cantidad_medida.  "\n");
-            $impresora->text("------------------------------------------------");
-        };
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $impresora->text("Colaborador: ");
-        $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
-        $impresora->feed(3);
-        $impresora->cut();
-        $impresora->close();
+                $ingreso = Ingreso::where('numero_referencia', $id_referencia)
+                ->with('Usuario', 'Encargado')
+                ->first();
 
-        return redirect('listIngreso');
+                $nombreImpresora = ("SAT 22TUS");
+                $connector = new WindowsPrintConnector($nombreImpresora);
+                $impresora = new Printer($connector);
+
+                $data = $this->obtenerListadoIngreso($id_referencia);
+                //return $data;
+
+                $impresora->setJustification(Printer::JUSTIFY_CENTER);
+                $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
+                $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
+                $impresora->bitImage($logo2);
+                $impresora->setTextSize(3, 3);
+                $impresora->text("A & S\n");
+                $impresora->setTextSize(2, 2);
+                $impresora->text("ASESORIAS Y SUMINISTROS DEL SUR\n");
+                $impresora->setTextSize(1, 1);
+                $impresora->text("Carrera 5 #3-153 sur interior 3 EDS Neiva de gas");
+                $impresora->text("Fecha de Ingreso: ");
+                $impresora->text($ingreso->fecha_recepcion . "\n");
+                $impresora->feed(2);
+                $impresora->text("Cliente: ");
+                $impresora->text(($ingreso->encargado->nombre_encargado) . "\n");
+                $impresora->text("Numero de referencia: ");
+                $impresora->text($ingreso->id . "\n");
+                $impresora->feed(1);
+
+                foreach( $data as $item){
+                    $impresora->setJustification(Printer::JUSTIFY_LEFT);
+                    $impresora->text("Numero de Extintores:  ");
+                    $impresora->text($item->numero_extintor. "\n");
+                    $impresora->text("Actividad           :  ");
+                    $impresora->text($item->nombre_actividad. "\n");
+                    $impresora->text("Unidad de medida    :  ");
+                    $impresora->text($item->unidad_medida. "\n");
+                    $impresora->text("Cantidad de Media   :  ");
+                    $impresora->text($item->cantidad_medida.  "\n");
+                    $impresora->text("------------------------------------------------");
+                };
+                $impresora->setJustification(Printer::JUSTIFY_CENTER);
+                $impresora->text("Colaborador: ");
+                $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
+                $impresora->feed(3);
+                $impresora->cut();
+                $impresora->close();
+
+
+                return redirect('listIngreso');
+            } else {
+                return back();
+            }
     }
 
     private function obtenerListadoIngreso($idIngreso)
@@ -157,7 +185,6 @@ class IngresoController extends Controller
              * pertinentes
              */
             $numeroEtiqueta = NumeroTiquete::select('id', 'numero_tiquete')->get()->last();
-            return $numeroEtiqueta;
             // return [
             //     'etiquetaDisponible' => $numeroEtiqueta->numero_tiquete,
             //     'numeroExtintoresIngreso' => $numeroExtintores,
@@ -171,7 +198,7 @@ class IngresoController extends Controller
             return redirect('listIngreso')->with('error', 'No se actualizo  el ingreso');
         }
     }
-    public function cambioEstado($id)
+    private function cambioEstado($id)
     {
 
         try {
@@ -187,7 +214,7 @@ class IngresoController extends Controller
             if ($actingreso) {
                 $actingreso->estado = 'Produccion';
                 $actingreso->save();
-                return $this->ticket($actingreso->id);
+                return redirect('listIngreso');
             } else {
                 return back();
             }
