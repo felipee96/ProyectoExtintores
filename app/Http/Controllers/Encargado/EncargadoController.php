@@ -52,7 +52,7 @@ class EncargadoController extends Controller
         try {
             $delectEncargado = Encargado::findOrFail($id);
             $delectEncargado->delete();
-            return $delectEncargado;
+            //return $delectEncargado;
             return back()->with('error', 'Se elimino el registro correctamente');
         } catch (Exception $a) {
             return back()->with('errors', 'No se puedo eliminar este registro');

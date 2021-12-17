@@ -48,6 +48,40 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header card-header-text card-header-warning">
+                        <div class="card-text">
+                            <h4 class="card-title">{{ __('Listado De extintores Recargados') }}</h4>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-striped" id="example">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('Nro Tiquete anterios') }}</th>
+                                    <th>{{ __('Nro Tiquete nuevo') }}</th>
+                                    <th>{{ __('Nro Extintor') }}</th>
+                                    <th>{{ __('Agente') }}</th>
+                                    <th>{{ __('Unidad de medida') }}</th>
+                                    <th>{{ __('Actividad') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($listadoRecarga as $item)
+                                <tr>
+                                    <td>{{$item['nro_tiquete_anterior']}}</td>
+                                    <td>{{$item['nro_tiquete_nuevo']}}</td>
+                                    <td>{{$item['nro_extintor']}}</td>
+                                    <td>{{$item['cantidad_medida']}}</td>
+                                    <td>{{$item['unidad_medida']}}</td>
+                                    <td>{{$item['nombre_actividad']}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -223,8 +257,8 @@
                                 <button class="btn btn-warning">{{ __('Enviar') }}</button>
 
                             </form>
-                            <a href="{{ url('infoRecarga/'.$id) }}">
-                                <button class="btn btn-primary">{{ __('Ver listado') }}</button></a>
+                                {{-- <a href="{{ url('infoRecarga/'.$id) }}">
+                                    <button class="btn btn-primary">{{ __('Ver listado') }}</button></a> --}}
                         </div>
                     </div>
                 </div>

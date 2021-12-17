@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <select name="tipo" id="tipo" class="form-control">
+                        {{-- <select name="tipo" id="tipo" class="form-control">
                             <option>{{__('Seleccionar tipo documento')}}</option>
                             <option value="numero_serial">{{__('CC')}}</option>
                             <option value="nit">{{__('NIT')}}</option>
@@ -32,6 +32,12 @@
                             <div class="input-group">
                                 <input type="number" name="numeroEtiqueta" class="form-control"
                                     placeholder="{{ __('Numero de etiqueta') }}" required>
+                            </div>
+                        </div> --}}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" name="numeroReferencia" class="form-control" id="referencia"
+                                    placeholder="{{ __('Numero de Referencia') }}" required>
                             </div>
                         </div>
                     </div>
