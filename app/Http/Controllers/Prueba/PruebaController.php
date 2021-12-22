@@ -42,9 +42,9 @@ class PruebaController extends Controller
             $error='Error no se puede eliminar este registro';
             $delectPrueba = Prueba::findOrFail($id);
             $delectPrueba->delete();
-            return back()->with('error', 'Se ha eliminado con exito');
+            return back()->with('exito', 'Se ha eliminado con exito');
         } catch (Exception $error) {
-            return back()->with('error',$error);
+            return back()->with('error',"Registro en uso, No se puede eliminar");
         }
     }
 }

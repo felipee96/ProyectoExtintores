@@ -168,7 +168,8 @@ class IngresoController extends Controller
     {
 
         /** Creamos este metodo para hacer uso de el en varias situaciones */
-
+        if($request->numero_total_extintor <= 0)
+            return back()->with('error',"Numero de extintores no puede ser 0");
         $ingreso = Ingreso::where('id', $id)->first();
         $numeroExtintores = $request->numero_total_extintor;
         $id = $ingreso->id;
