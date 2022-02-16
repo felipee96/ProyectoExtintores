@@ -14,6 +14,7 @@ use Mike42\Escpos\Printer;
 use Mike42\Escpos\compaj;
 use Mike42\Escpos\EscposImage;
 use App\Http\Controllers\Utilities\ImprimirTicket;
+use PDF;
 
 class IngresoController extends Controller
 {
@@ -39,15 +40,12 @@ class IngresoController extends Controller
             /**
             * Cambia el estado del ingreso y guarda el registro
             */
-            if ($actingreso) {
-                $actingreso->estado = 'Produccion';
-                $actingreso->save();
 
                 /**
                 * Ingresa a imprimir la factura
                 */
 
-                $ingreso = Ingreso::where('numero_referencia', $id_referencia)
+              /*   $ingreso = Ingreso::where('numero_referencia', $id_referencia)
                 ->with('Usuario', 'Encargado')
                 ->first();
 
@@ -55,9 +53,9 @@ class IngresoController extends Controller
                 $connector = new WindowsPrintConnector($nombreImpresora);
                 $impresora = new Printer($connector);
 
-                $data = $this->obtenerListadoIngreso($id_referencia);
+                $data = $this->obtenerListadoIngreso($id_referencia); */
                 //return $data;
-
+/*
                 $impresora->setJustification(Printer::JUSTIFY_CENTER);
                 $logo2 =  EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\barra.png", false);
                 $logo = EscposImage::load("C:\Users\hp\Documents\GitHub\ProyectoExtintores\public\material\img\imprimir.gif", false);
@@ -76,8 +74,8 @@ class IngresoController extends Controller
                 $impresora->text("Numero de referencia: ");
                 $impresora->text($ingreso->id . "\n");
                 $impresora->feed(1);
-
-                foreach( $data as $item){
+ */
+              /*   foreach( $data as $item){
                     $impresora->setJustification(Printer::JUSTIFY_LEFT);
                     $impresora->text("Numero de Extintores:  ");
                     $impresora->text($item->numero_extintor. "\n");
@@ -94,13 +92,34 @@ class IngresoController extends Controller
                 $impresora->text(($ingreso->usuario->nombre . " " . $ingreso->usuario->apellido) . "\n");
                 $impresora->feed(3);
                 $impresora->cut();
-                $impresora->close();
-
+                $impresora->close(); */
+/*  *//*
 
                 return redirect('listIngreso');
             } else {
                 return back();
+            } */
+
+            if ($actingreso) {
+
+                $ingreso = Ingreso::where('numero_referencia', $id_referencia)
+                ->with('Usuario', 'Encargado')
+                ->first();
+
+                $data = $this->obtenerListadoIngreso($id_referencia);
+
+                $generarCodigo = Ingreso::where('numero_referencia', $id_referencia)
+                ->with('Usuario', 'Encargado')
+                ->first();
+                $pdf = PDF::loadView('pdf.pdf',['ingreso'=>$ingreso],['data' => $data]);
+                return $pdf->stream();
+                //return redirect('listIngreso');
             }
+
+
+
+
+            //return view('pdf.pdf',  compact('ingreso', 'data'));
     }
 
     private function obtenerListadoIngreso($idIngreso)
@@ -199,7 +218,7 @@ class IngresoController extends Controller
             return redirect('listIngreso')->with('error', 'No se actualizo  el ingreso');
         }
     }
-    private function cambioEstado($id)
+    public function cambioEstado($id)
     {
 
         try {

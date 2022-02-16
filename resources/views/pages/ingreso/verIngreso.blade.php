@@ -51,7 +51,7 @@
                                             data-toggle="modal" data-target="#editar{{ $item->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <a href="{{ url('ticket/'.$item->numero_referencia) }}"><button
+                                        <a href="{{ url('ticket/'.$item->numero_referencia) }}" target="_blank"><button
                                                 type="submit" class="btn btn-info btn-fab btn-fab-mini btn-round">
                                                 <i class="material-icons">assignment</i>
                                             </button></a>

@@ -58,10 +58,13 @@
 
                             </tbody>
                         </table>
-                        <a href="{{ url('ticket/'.$numeroReferencia) }}"><button id="enviar" class="btn btn-success"
-                                style="float: right">{{ __('Producción') }}</button></a>
+                        <a href="{{ url('ingresoact/'.$numeroReferencia) }}"><button id="enviar" class="btn btn-success"
+                            style="float: right">{{ __('Producción') }}</button></a>
                         <a href="{{ url('ingresoL/'.$numeroReferencia) }}"><button id="enviar" class="btn btn-warning"
                                 style="float: right">{{ __('Regresar') }}</button></a>
+                        <a href="{{ url('ticket/'.$numeroReferencia) }}" target="_blank"><button type="submit"  class="btn btn-success">
+                            {{ __('Imprimir') }}
+                                            </button></a>
 
                     </div>
                 </div>
